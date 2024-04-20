@@ -35,16 +35,15 @@
 
     <licenses>
         <license>
-            <name>Apache License 2.0</name>
-            <url>https://github.com/Nonoas/jfx-flat-ui/blob/master/LICENSE</url>
-            <distribution>repo</distribution>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
 
+
     <developers>
         <developer>
-            <id>nonoas</id>
-            <name>OpenJFX Mailing List</name>
+            <name>Nonoas</name>
             <email>nonoaswy@163.com</email>
         </developer>
     </developers>
@@ -91,7 +90,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -101,6 +100,8 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                </configuration>
             </plugin>
 
             <!--发布插件-->
