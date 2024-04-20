@@ -1,10 +1,10 @@
-package indi.jfxmaker.stage;
+package github.nonoas.jfx.flat.ui.stage;
 
-import indi.jfxmaker.common.InsetConstant;
-import indi.jfxmaker.common.Visibility;
-import indi.jfxmaker.control.SysButtonEnum;
-import indi.jfxmaker.pane.TransparentPane;
-import indi.jfxmaker.utils.UIUtil;
+import github.nonoas.jfx.flat.ui.pane.TransparentPane;
+import github.nonoas.jfx.flat.ui.common.InsetConstant;
+import github.nonoas.jfx.flat.ui.common.Visibility;
+import github.nonoas.jfx.flat.ui.control.SysButtonEnum;
+import github.nonoas.jfx.flat.ui.utils.UIUtil;
 
 import java.util.Collection;
 

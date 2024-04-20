@@ -1,7 +1,9 @@
-package indi.jfxmaker;
+package github.nonoas.jfx.flat.ui;
 
-import indi.jfxmaker.stage.AppStage;
+import github.nonoas.jfx.flat.ui.stage.AppStage;
+
 import java.awt.SystemTray;
+
 import javafx.application.HostServices;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

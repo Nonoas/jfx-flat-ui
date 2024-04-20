@@ -1,9 +1,8 @@
-package indi.jfxmaker.pane;
+package github.nonoas.jfx.flat.ui.pane;
 
-import indi.jfxmaker.common.InsetConstant;
-import indi.jfxmaker.utils.UIUtil;
+import github.nonoas.jfx.flat.ui.common.InsetConstant;
+import github.nonoas.jfx.flat.ui.utils.UIUtil;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;

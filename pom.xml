@@ -8,6 +8,8 @@
     <artifactId>jfx-flat-ui</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
+    <description>jfx flat ui</description>
+    <url>https://github.com/Nonoas/jfx-flat-ui</url>
 
     <properties>
         <jfx.version>17.0.0.1</jfx.version>
@@ -33,29 +35,75 @@
 
     <licenses>
         <license>
-            <name>GPLv2+CE</name>
-            <url>https://openjdk.java.net/legal/gplv2+ce.html</url>
+            <name>Apache License 2.0</name>
+            <url>https://github.com/Nonoas/jfx-flat-ui/blob/master/LICENSE</url>
             <distribution>repo</distribution>
-            <comments>GNU General Public License version 2 with the Classpath Exception</comments>
         </license>
     </licenses>
 
     <developers>
         <developer>
-            <id>openjfx</id>
+            <id>nonoas</id>
             <name>OpenJFX Mailing List</name>
-            <email>openjfx-dev@openjdk.java.net</email>
+            <email>nonoaswy@163.com</email>
         </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/openjdk/jfx.git</connection>
-        <developerConnection>scm:git:ssh://github.com:openjdk/jfx.git</developerConnection>
-        <url>https://github.com/openjdk/jfx</url>
+        <connection>scm:git:git://github.com/Nonoas/jfx-flat-ui.git</connection>
+        <developerConnection>scm:git:ssh://github.com:Nonoas/jfx-flat-ui.git</developerConnection>
+        <url>https://github.com/Nonoas/jfx-flat-ui</url>
     </scm>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--发布插件-->
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>

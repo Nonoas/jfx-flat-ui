@@ -1,6 +1,6 @@
-package indi.jfxmaker.utils;
+package github.nonoas.jfx.flat.ui.utils;
 
-import indi.jfxmaker.common.Visibility;
+import github.nonoas.jfx.flat.ui.common.Visibility;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;

@@ -1,7 +1,7 @@
-package indi.jfxmaker.control;
+package github.nonoas.jfx.flat.ui.control;
 
 
-import indi.jfxmaker.pane.SVGImage;
+import github.nonoas.jfx.flat.ui.pane.SVGImage;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;

@@ -1,4 +1,4 @@
-package indi.jfxmaker.utils;
+package github.nonoas.jfx.flat.ui.utils;
 
 import javafx.scene.paint.Color;
 

@@ -1,4 +1,4 @@
-package indi.jfxmaker.common;
+package github.nonoas.jfx.flat.ui.common;
 
 /**
  * UI组件的可见常量

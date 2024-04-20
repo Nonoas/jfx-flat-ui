@@ -1,4 +1,4 @@
-package indi.jfxmaker.splash;
+package github.nonoas.jfx.flat.ui.splash;
 
 import javafx.scene.Parent;
 import javafx.scene.control.ProgressBar;

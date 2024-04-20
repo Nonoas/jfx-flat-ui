@@ -1,4 +1,4 @@
-package indi.jfxmaker.pane;
+package github.nonoas.jfx.flat.ui.pane;
 
 import javafx.beans.NamedArg;
 import javafx.beans.property.DoubleProperty;
