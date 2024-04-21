@@ -1,9 +1,9 @@
 package github.nonoas.jfx.flat.ui.stage;
 
+import github.nonoas.jfx.flat.ui.control.UIFactory;
 import github.nonoas.jfx.flat.ui.pane.TransparentPane;
 import github.nonoas.jfx.flat.ui.common.InsetConstant;
 import github.nonoas.jfx.flat.ui.common.Visibility;
-import github.nonoas.jfx.flat.ui.control.SysButtonEnum;
 import github.nonoas.jfx.flat.ui.utils.UIUtil;
 
 import java.util.Collection;
@@ -81,9 +81,9 @@ public class AppStage {
      * 初始化窗口按钮，包括监听事件
      */
     private void initSysButtons() {
-        Button minBtn = SysButtonEnum.MINIMIZE.get();
-        Button maxBtn = SysButtonEnum.MAXIMIZE.get();
-        Button closeBtn = SysButtonEnum.CLOSE.get();
+        Button minBtn = UIFactory.createMinimizeButton();
+        Button maxBtn = UIFactory.maximizeButton(maximized);
+        Button closeBtn = UIFactory.closeButton();
 
         minBtn.setOnAction(event -> this.stage.setIconified(true));
         maxBtn.setOnAction(event -> this.setMaximized(!isMaximized()));

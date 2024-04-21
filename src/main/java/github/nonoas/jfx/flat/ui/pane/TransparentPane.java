@@ -34,6 +34,7 @@ public class TransparentPane extends AnchorPane {
 
         HBox sysBtnBox = new HBox();
         sysButtons = sysBtnBox.getChildren();
+        sysBtnBox.getStyleClass().add("sys-btn-box");
 
         sysBtnBox.setAlignment(Pos.CENTER_RIGHT);
 
@@ -67,9 +68,8 @@ public class TransparentPane extends AnchorPane {
      * @param content 根布局
      */
     public void setContent(Node content) {
-        if (content instanceof Region) {
+        if (content instanceof Region region) {
             // 双向绑定宽高，使布局宽高随窗口变化
-            Region region = (Region) content;
             UIUtil.setAnchor(region, 0.0);
             contentPane.getChildren().setAll(region);
         } else {

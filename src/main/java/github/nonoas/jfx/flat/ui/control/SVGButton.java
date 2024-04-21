@@ -31,6 +31,7 @@ public class SVGButton extends Button {
         getStylesheets().add(STYLE_PATH);
         getStyleClass().add(STYLE_CLASS);
         setPrefSize(DEFAULT_SIZE, DEFAULT_SIZE);
+        setFocusTraversable(false);
     }
 
     public SVGButton() {
