@@ -29,7 +29,7 @@ import javafx.stage.StageStyle;
 /**
  * App窗口，通常作为唯一窗口
  */
-public class AppStage{
+public class AppStage {
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -213,7 +213,7 @@ public class AppStage{
      *
      * @param images 图标集合
      */
-    public void addIcons(Collection<Image> images) {
+    public final void addIcons(Collection<Image> images) {
         stage.getIcons().addAll(images);
     }
 
@@ -233,6 +233,40 @@ public class AppStage{
         stage.setResizable(b);
     }
 
+    public final void setAlwaysOnTop(boolean b) {
+        stage.setAlwaysOnTop(b);
+    }
+
+    public final void setTitle(String title) {
+        stage.setTitle(title);
+    }
+
+    public final void hide() {
+        stage.hide();
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+
+    /**
+     * 由于 [Stage.show] 方法不能重写，显示窗口时可能会做一些其他的操作，所以提供此方法。
+     * 调用时，如果窗口处于最小化状态，也会显示出来
+     */
+    public void display() {
+        if (stage.isIconified()) {
+            stage.setIconified(false);
+        }
+        stage.show();
+    }
+
+    /**
+     * 判断窗口是否在显示在屏幕上，即没有最小化且没有隐藏
+     */
+    public boolean isInsight() {
+        return stage.isShowing() && !stage.isIconified();
+    }
 
     /**
      * 设置内容可缩放

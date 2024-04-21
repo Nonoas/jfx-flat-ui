@@ -6,7 +6,7 @@
 
     <groupId>io.github.nonoas</groupId>
     <artifactId>jfx-flat-ui</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <description>jfx flat ui</description>
     <url>https://github.com/Nonoas/jfx-flat-ui</url>
@@ -17,6 +17,24 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <gpg.skip>true</gpg.skip>
+                <javadoc.skip>true</javadoc.skip>
+            </properties>
+        </profile>
+        <profile>
+            <id>deploy</id>
+            <properties>
+                <gpg.skip>false</gpg.skip>
+                <javadoc.skip>false</javadoc.skip>
+            </properties>
+        </profile>
+    </profiles>
+
 
     <dependencies>
         <dependency>
@@ -84,6 +102,7 @@
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <doclint>none</doclint>
+                    <skip>${javadoc.skip}</skip>
                 </configuration>
             </plugin>
 
@@ -101,6 +120,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <skip>${gpg.skip}</skip>
                 </configuration>
             </plugin>
 
