@@ -68,7 +68,7 @@ public class AppStage {
     private void initView() {
 
         scene.setFill(Color.TRANSPARENT);
-        scene.getStylesheets().addAll("css/style-normal.css");
+        scene.getStylesheets().addAll("css/style-light.css");
 
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
