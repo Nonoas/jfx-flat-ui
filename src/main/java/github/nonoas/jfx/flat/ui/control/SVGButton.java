@@ -13,7 +13,7 @@ public class SVGButton extends Button {
 
     public static final String STYLE_CLASS = "sys-button";
 
-    public static final String STYLE_PATH = "/css/style.css";
+    public static final String STYLE_PATH = "/css/style-common.css";
 
     private final static Double DEFAULT_SIZE = 30.0;
 

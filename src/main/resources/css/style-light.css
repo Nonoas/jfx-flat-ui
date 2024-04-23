@@ -26,6 +26,8 @@
 
 .button, .menu-button, .toggle-button, .split-menu-button {
     -fx-font-size: 14;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
     -fx-pref-height: 30;
     -fx-min-width: 30;
 }
@@ -226,6 +228,8 @@ VBox > .split-menu-button.last > .arrow-button {
 .button.primary, .split-menu-button.primary, .toggle-button.primary, .menu-button.primary,
 .split-menu-button.primary > .label, .split-menu-button.primary > .arrow-button {
     -fx-background-color: #3F80EA;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
 }
 
 .button.primary, .menu-button.primary, .toggle-button.primary,
