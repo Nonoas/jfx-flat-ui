@@ -276,7 +276,7 @@ public class AppStage {
 
         scene.addEventFilter(MouseEvent.MOUSE_MOVED, event -> {
             // 消费此事件防止传递
-            event.consume();
+//            event.consume();
             // 窗口大小不可改变时，直接退出
             if (!stage.isResizable() || this.isMaximized() || stage.isFullScreen()) {
                 return;
@@ -362,7 +362,7 @@ public class AppStage {
                 stage.setY(event.getScreenY() - yOffset);
             }
 
-            event.consume();
+//            event.consume();
         });
 
         scene.setOnMousePressed(pressHandler);

@@ -1,6 +1,7 @@
 package github.nonoas.jfx.flat.ui.utils;
 
 import github.nonoas.jfx.flat.ui.common.Visibility;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -75,5 +76,10 @@ public class UIUtil {
         AnchorPane.setRightAnchor(child, topRightBottomLeft);
         AnchorPane.setBottomAnchor(child, topRightBottomLeft);
         AnchorPane.setLeftAnchor(child, topRightBottomLeft);
+    }
+
+    public static Bounds getScreeBounds(Node node) {
+        Bounds bounds = node.getBoundsInLocal();
+        return node.localToScreen(bounds);
     }
 }

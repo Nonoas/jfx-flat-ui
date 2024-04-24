@@ -3,8 +3,6 @@ package github.nonoas.jfx.flat.ui.control;
 import github.nonoas.jfx.flat.ui.Colors;
 import github.nonoas.jfx.flat.ui.pane.SVGImage;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;

@@ -3,7 +3,7 @@
     -fx-body-color: #F5F5F5;
     -fx-outer-border: #cecece;
     -fx-font-family: "Microsoft YaHei UI";
-    -fx-font-size: 1em;
+    -fx-font-size: 1.2em;
 }
 
 
@@ -17,7 +17,7 @@
 }
 
 .button, .menu-button, .toggle-button, .split-menu-button {
-    -fx-font-size: 14;
+    -fx-font-size: 1em;
     -fx-background-radius: 4px;
     -fx-border-radius: 4px;
     -fx-pref-height: 30;
@@ -677,7 +677,7 @@ VBox > .split-menu-button.last > .arrow-button {
     -fx-border-color: #C0C0C0;
     -fx-background-insets: 0;
     -fx-padding: 0.667em 0.75em 0.667em 0.75em; /* 10px */
-    -fx-font-size: 0.85em;
+    -fx-font-size: 1em;
 }
 
 .tooltip.success {
