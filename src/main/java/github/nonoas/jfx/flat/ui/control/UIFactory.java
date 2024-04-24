@@ -17,7 +17,7 @@ public class UIFactory {
         return getBaseButton(svgImage);
     }
 
-    public static Button maximizeButton(SimpleBooleanProperty maximizedProperty) {
+    public static Button createMaximizeButton(SimpleBooleanProperty maximizedProperty) {
         // 非最大化时图标
         SVGImage svgImage = new SVGImage(SVGPath.MAXIMIZE_BUTTON.value(), Colors.COMMON_BTN_COLOR);
         svgImage.setSize(15, 15);
@@ -46,6 +46,12 @@ public class UIFactory {
                 .backgroundColor(Color.TRANSPARENT)
                 .backgroundColorHover(Color.valueOf("#f55"))
                 .build();
+    }
+
+    public static Button createMenuButton() {
+        SVGImage svgImage = new SVGImage(SVGPath.SETTING_BUTTON.value(), Colors.COMMON_BTN_COLOR);
+        svgImage.setSize(15, 15);
+        return getBaseButton(svgImage);
     }
 
     public static Button getBaseButton(SVGImage svgImage) {

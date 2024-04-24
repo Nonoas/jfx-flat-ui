@@ -83,7 +83,7 @@ public class AppStage {
      */
     private void initSysButtons() {
         Button minBtn = UIFactory.createMinimizeButton();
-        Button maxBtn = UIFactory.maximizeButton(maximized);
+        Button maxBtn = UIFactory.createMaximizeButton(maximized);
         Button closeBtn = UIFactory.closeButton();
 
         minBtn.setOnAction(event -> this.stage.setIconified(true));
