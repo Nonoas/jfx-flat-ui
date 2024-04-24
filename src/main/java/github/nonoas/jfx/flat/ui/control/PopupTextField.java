@@ -45,12 +45,10 @@ public class PopupTextField extends TextField {
     }
 
     private Node updatePopupContent(String newValue) {
-        VBox vBox = new VBox() {
-            {
-                setEffect(new DropShadow(SHADOW_SIZE, 0, SHADOW_SIZE / 4, Color.GRAY));
-                setPrefWidth(PopupTextField.this.getWidth());
-            }
-        };
+        VBox vBox = new VBox();
+        vBox.setEffect(new DropShadow(SHADOW_SIZE, 0, SHADOW_SIZE / 4, Color.GRAY));
+        vBox.setPrefWidth(PopupTextField.this.getWidth());
+        vBox.setStyle("-fx-background-color: white");
 
         if (popupContentFactory != null) {
             vBox.getChildren().setAll(popupContentFactory.call(newValue));
