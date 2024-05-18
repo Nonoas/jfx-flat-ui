@@ -4,6 +4,7 @@
     -fx-outer-border: #cecece;
     -fx-font-family: "Microsoft YaHei UI";
     -fx-font-size: 1.2em;
+    -color-primary: #3F80EA;
 }
 
 
@@ -972,6 +973,57 @@ VBox > .split-menu-button.last > .arrow-button {
 
 .slider:vertical .track {
     -fx-pref-width: 5;
+}
+
+
+
+.switch {
+    -fx-thumb-move-animation-time: 200;
+}
+.switch > .label-container > .label {
+    -fx-font-size: 1em;
+    -fx-text-fill: #24292f;
+    -fx-padding: 2px 6px 2px 0;
+}
+.switch > .thumb {
+    -fx-background-color: #d0d7de,  #ffffff;
+    -fx-background-insets: 0, 2px;
+    -fx-background-radius: 10em;
+    -fx-padding: 0.85em;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+    -fx-opacity: 0.8;
+}
+.switch > .thumb-area {
+    -fx-background-radius: 1em;
+    -fx-background-color: #d0d7de, #f6f8fa;
+    -fx-background-insets: 0, 1px;
+    -fx-padding: 0.85em 1.4em 0.85em 1.4em;
+}
+.switch:selected > .thumb {
+    -fx-background-color: -color-primary,  #ffffff;
+    -fx-opacity: 1;
+}
+.switch:selected > .thumb-area {
+    -fx-background-color: -color-primary, -color-primary;
+}
+.switch:selected:success > .thumb {
+    -fx-background-color:  #449d44,  #ffffff;
+}
+.switch:selected:success > .thumb-area {
+    -fx-background-color:  #449d44,  #449d44;
+}
+.switch:selected:danger > .thumb {
+    -fx-background-color: #c9302c,  #ffffff;
+}
+.switch:selected:danger > .thumb-area {
+    -fx-background-color: #c9302c, #c9302c;
+}
+.switch:right > .label-container > .label {
+    -fx-padding: 2px 0 2px 6px;
+}
+.switch:disabled {
+    -fx-opacity: 0.4;
 }
 
 /*******************************************************************************
