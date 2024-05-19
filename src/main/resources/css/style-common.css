@@ -1,8 +1,0 @@
-.sys-button {
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
-}
-
-.sys-button:pressed {
-    -fx-border-width: 0;
-}

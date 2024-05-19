@@ -4,6 +4,7 @@ import github.nonoas.jfx.flat.ui.Colors;
 import github.nonoas.jfx.flat.ui.pane.SVGImage;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -57,7 +58,9 @@ public class UIFactory {
         svgImageTop.setSize(15, 15);
 
         SVGImage graphic = stage.isAlwaysOnTop() ? svgImageTop : svgImage;
-        Button btn = new SVGButton(graphic);
+        SVGButton btn = new SVGButton(graphic);
+        btn.setStyle("-fx-background-color: transparent");
+        btn.setBackGroundColor(Color.TRANSPARENT, Colors.HOVER_0);
 
         btn.setOnAction(e -> {
             boolean onTop = !stage.isAlwaysOnTop();
@@ -81,7 +84,7 @@ public class UIFactory {
         return new SVGButton.SvgButtonBuilder()
                 .graphic(svgImage)
                 .backgroundColor(Color.TRANSPARENT)
-                .backgroundColorHover(Color.valueOf("#dedede"))
+                .backgroundColorHover(Colors.HOVER_0)
                 .build();
     }
 }

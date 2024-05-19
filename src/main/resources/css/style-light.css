@@ -4683,6 +4683,16 @@ switch:disabled {
     -fx-border-width: 0;
 }
 
-.sys-button:pressed {
+.svg-button:pressed {
     -fx-border-width: 0;
 }
+
+.svg-button {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.svg-button:pressed {
+    -fx-border-width: 0;
+}
+

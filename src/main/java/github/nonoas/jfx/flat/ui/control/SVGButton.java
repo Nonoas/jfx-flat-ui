@@ -1,5 +1,6 @@
 package github.nonoas.jfx.flat.ui.control;
 
+import github.nonoas.jfx.flat.ui.Colors;
 import github.nonoas.jfx.flat.ui.pane.SVGImage;
 import github.nonoas.jfx.flat.ui.utils.ColorUtil;
 import javafx.scene.control.Button;
@@ -11,9 +12,7 @@ import javafx.scene.paint.Color;
  */
 public class SVGButton extends Button {
 
-    public static final String STYLE_CLASS = "sys-button";
-
-    public static final String STYLE_PATH = "/css/style-common.css";
+    public static final String STYLE_CLASS = "svg-button";
 
     private final static Double DEFAULT_SIZE = 30.0;
 
@@ -28,7 +27,6 @@ public class SVGButton extends Button {
     private Color backgroundColorHover;
 
     {
-        getStylesheets().add(STYLE_PATH);
         getStyleClass().add(STYLE_CLASS);
         setPrefSize(DEFAULT_SIZE, DEFAULT_SIZE);
         setFocusTraversable(false);
@@ -74,6 +72,16 @@ public class SVGButton extends Button {
 
     public void setBackgroundColorHover(Color backgroundColorHover) {
         this.backgroundColorHover = backgroundColorHover;
+    }
+
+    public void setBackGroundColor(Color def,Color hover) {
+        hoverProperty().addListener((o, n, v) -> {
+            if (v) {
+                setStyle("-fx-background-color: " + ColorUtil.colorToHEX(hover));
+            } else {
+                setStyle("-fx-background-color: " + ColorUtil.colorToHEX(def));
+            }
+        });
     }
 
 
