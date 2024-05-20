@@ -1,5 +1,6 @@
 package github.nonoas.jfx.flat.ui.control;
 
+import github.nonoas.jfx.flat.ui.Colors;
 import github.nonoas.jfx.flat.ui.utils.UIUtil;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -46,7 +47,7 @@ public class PopupTextField extends TextField {
 
     private Node updatePopupContent(String newValue) {
         VBox vBox = new VBox();
-        vBox.setEffect(new DropShadow(SHADOW_SIZE, 0, SHADOW_SIZE / 4, Color.GRAY));
+        vBox.setEffect(new DropShadow(SHADOW_SIZE, 0, SHADOW_SIZE / 4, Colors.DROP_SHADOW_0));
         vBox.setPrefWidth(PopupTextField.this.getWidth());
         vBox.setStyle("-fx-background-color: white");
 
