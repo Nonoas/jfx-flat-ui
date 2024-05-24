@@ -25,6 +25,9 @@
                 <gpg.skip>true</gpg.skip>
                 <javadoc.skip>true</javadoc.skip>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <profile>
             <id>deploy</id>

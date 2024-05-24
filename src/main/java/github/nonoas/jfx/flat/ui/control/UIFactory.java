@@ -4,7 +4,6 @@ import github.nonoas.jfx.flat.ui.Colors;
 import github.nonoas.jfx.flat.ui.pane.SVGImage;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
