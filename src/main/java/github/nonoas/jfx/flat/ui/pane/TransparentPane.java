@@ -3,13 +3,17 @@ package github.nonoas.jfx.flat.ui.pane;
 import github.nonoas.jfx.flat.ui.common.InsetConstant;
 import github.nonoas.jfx.flat.ui.utils.UIUtil;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * 透明面板
@@ -25,33 +29,54 @@ public class TransparentPane extends AnchorPane {
     private final AnchorPane contentPane = new AnchorPane();
 
     /**
+     * 阴影布局，用于生成阴影
+     */
+    private final VBox shadowPane = new VBox();
+
+    /**
      * 按钮布局
      */
     private final ObservableList<Node> sysButtons;
 
+    private final Insets ROOT_PADDING = new Insets(InsetConstant.SHADOW_SIZE_1);
 
     public TransparentPane() {
 
+        this.setPadding(ROOT_PADDING);
+
+        setStyle("-fx-background-color: transparent !important;");
+
+        initShadowPane();
+        initContentPane();
+
         HBox sysBtnBox = new HBox();
         sysButtons = sysBtnBox.getChildren();
+
+        initSysButton(sysBtnBox);
+
+        getChildren().setAll(shadowPane, sysBtnBox);
+    }
+
+    private void initSysButton(HBox sysBtnBox) {
         sysBtnBox.getStyleClass().add("sys-btn-box");
-
         sysBtnBox.setAlignment(Pos.CENTER_RIGHT);
-
-        this.setPadding(InsetConstant.INSET_15);
-
-        setStyle("-fx-background-color: rgb(0,0,0,0)");
-
-        contentPane.setStyle("-fx-background-color: white");
-        contentPane.setEffect(getDropShadow());
-
-        getChildren().setAll(contentPane, sysBtnBox);
-
-        UIUtil.setAnchor(contentPane, 0.0);
-
         AnchorPane.setTopAnchor(sysBtnBox, 0.0);
         AnchorPane.setRightAnchor(sysBtnBox, 0.0);
+    }
 
+    private void initShadowPane() {
+        shadowPane.setStyle("-fx-background-color: white");
+        shadowPane.setEffect(getDropShadow());
+        shadowPane.getChildren().setAll(contentPane);
+        UIUtil.setAnchor(shadowPane, 0.0);
+    }
+
+    private void initContentPane() {
+        VBox.setVgrow(contentPane, Priority.ALWAYS);
+        Rectangle clip = new Rectangle();
+        clip.widthProperty().bind(widthProperty().subtract(InsetConstant.SHADOW_SIZE_1 * 2));
+        clip.heightProperty().bind(heightProperty());
+        contentPane.setClip(clip);
     }
 
     public ObservableList<Node> getSysButtons() {
@@ -68,9 +93,9 @@ public class TransparentPane extends AnchorPane {
      * @param content 根布局
      */
     public void setContent(Node content) {
+        VBox.setVgrow(content, Priority.ALWAYS);
         if (content instanceof Region region) {
-            // 双向绑定宽高，使布局宽高随窗口变化
-            UIUtil.setAnchor(region, 0.0);
+            UIUtil.setAnchor(region, 0);
             contentPane.getChildren().setAll(region);
         } else {
             contentPane.getChildren().setAll(content);

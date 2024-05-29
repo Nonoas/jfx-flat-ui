@@ -1,13 +1,10 @@
 package github.nonoas.jfx.flat.ui.stage;
 
-import github.nonoas.jfx.flat.ui.control.UIFactory;
-import github.nonoas.jfx.flat.ui.pane.TransparentPane;
 import github.nonoas.jfx.flat.ui.common.InsetConstant;
 import github.nonoas.jfx.flat.ui.common.Visibility;
+import github.nonoas.jfx.flat.ui.control.UIFactory;
+import github.nonoas.jfx.flat.ui.pane.TransparentPane;
 import github.nonoas.jfx.flat.ui.utils.UIUtil;
-
-import java.util.Collection;
-
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -25,6 +22,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.util.Collection;
 
 /**
  * App窗口，通常作为唯一窗口
@@ -142,7 +141,7 @@ public class AppStage {
             stage.setX(visualBounds.getMinX());
             stage.setY(visualBounds.getMinY());
         } else {
-            stageRootPane.setPadding(InsetConstant.INSET_15);
+            stageRootPane.setPadding(InsetConstant.INSET_16);
             stage.setMaximized(false);
             stage.setWidth(Math.max(preMaximizedWith, stage.getMinWidth()));
             stage.setHeight(Math.max(preMaximizedHeight, stage.getMinHeight()));
