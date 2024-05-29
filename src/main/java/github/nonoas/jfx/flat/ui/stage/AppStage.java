@@ -136,12 +136,14 @@ public class AppStage {
             stageRootPane.setPadding(InsetConstant.INSET_EMPTY);
             Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
 
-            stage.setX(visualBounds.getMinX());
-            stage.setY(visualBounds.getMinY());
+            stage.setMaximized(true);
             stage.setWidth(visualBounds.getWidth());
             stage.setHeight(visualBounds.getHeight());
+            stage.setX(visualBounds.getMinX());
+            stage.setY(visualBounds.getMinY());
         } else {
             stageRootPane.setPadding(InsetConstant.INSET_15);
+            stage.setMaximized(false);
             stage.setWidth(Math.max(preMaximizedWith, stage.getMinWidth()));
             stage.setHeight(Math.max(preMaximizedHeight, stage.getMinHeight()));
             stage.centerOnScreen();
