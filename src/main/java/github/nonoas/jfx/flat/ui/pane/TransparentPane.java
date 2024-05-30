@@ -75,7 +75,7 @@ public class TransparentPane extends AnchorPane {
         VBox.setVgrow(contentPane, Priority.ALWAYS);
         Rectangle clip = new Rectangle();
         clip.widthProperty().bind(widthProperty().subtract(InsetConstant.SHADOW_SIZE_1 * 2));
-        clip.heightProperty().bind(heightProperty());
+        clip.heightProperty().bind(heightProperty().subtract(InsetConstant.SHADOW_SIZE_1 * 2));
         contentPane.setClip(clip);
     }
 
