@@ -2,6 +2,8 @@ package github.nonoas.jfx.flat.ui.pane;
 
 import github.nonoas.jfx.flat.ui.common.InsetConstant;
 import github.nonoas.jfx.flat.ui.utils.UIUtil;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -65,7 +67,7 @@ public class TransparentPane extends AnchorPane {
     }
 
     private void initShadowPane() {
-        shadowPane.setStyle("-fx-background-color: white");
+        shadowPane.setStyle("-fx-background-color: white;");
         shadowPane.setEffect(getDropShadow());
         shadowPane.getChildren().setAll(contentPane);
         UIUtil.setAnchor(shadowPane, 0.0);
@@ -74,8 +76,10 @@ public class TransparentPane extends AnchorPane {
     private void initContentPane() {
         VBox.setVgrow(contentPane, Priority.ALWAYS);
         Rectangle clip = new Rectangle();
-        clip.widthProperty().bind(widthProperty().subtract(InsetConstant.SHADOW_SIZE_1 * 2));
-        clip.heightProperty().bind(heightProperty().subtract(InsetConstant.SHADOW_SIZE_1 * 2));
+        widthProperty().addListener((ov, old, newVal) -> clip.setWidth((Double) newVal - getPadding().getLeft() - 1));
+        heightProperty().addListener((ov, old, newVal) -> clip.setHeight((Double) newVal - getPadding().getTop() - 1));
+        clip.setArcHeight(60);
+        clip.setArcWidth(60);
         contentPane.setClip(clip);
     }
 
