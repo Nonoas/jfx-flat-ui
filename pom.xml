@@ -6,7 +6,7 @@
 
     <groupId>io.github.nonoas</groupId>
     <artifactId>jfx-flat-ui</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
     <description>jfx flat ui</description>
     <url>https://github.com/Nonoas/jfx-flat-ui</url>
