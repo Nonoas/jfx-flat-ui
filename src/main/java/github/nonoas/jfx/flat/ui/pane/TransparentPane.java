@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * 透明面板（优化版，使用 StackPane 替代 VBox）
@@ -50,6 +51,15 @@ public class TransparentPane extends AnchorPane {
 
         initSysButton(sysBtnBox);
 
+        // 给 shadowPane 添加剪裁区域，避免显示超出 padding 的内容
+        Rectangle clip = new Rectangle();
+        contentPane.setClip(clip);
+
+        // 根据 shadowPane 尺寸动态更新 clip 大小
+        contentPane.layoutBoundsProperty().addListener((obs, oldBounds, newBounds) -> {
+            clip.setWidth(newBounds.getWidth());
+            clip.setHeight(newBounds.getHeight());
+        });
         getChildren().setAll(shadowPane, sysBtnBox);
     }
 
@@ -85,10 +95,12 @@ public class TransparentPane extends AnchorPane {
      * @param content 根布局
      */
     public void setContent(Node content) {
-        if (content instanceof Region region) {
+        if (content instanceof Region ) {
+            Region region = (Region) content;
             UIUtil.setAnchor(region, 0);
             region.prefWidthProperty().bind(contentPane.widthProperty());
             region.prefHeightProperty().bind(contentPane.heightProperty());
+            region.setMinSize(0, 0);
             contentPane.getChildren().setAll(region);
         } else {
             contentPane.getChildren().setAll(content);
