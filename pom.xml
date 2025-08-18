@@ -8,7 +8,8 @@
     <artifactId>jfx-flat-ui</artifactId>
     <version>1.0.2</version>
     <packaging>jar</packaging>
-    <description>jfx flat ui</description>
+    <name>jfx-flat-ui</name>
+    <description>Flat UI for JavaFX</description>
     <url>https://github.com/Nonoas/jfx-flat-ui</url>
 
     <properties>
