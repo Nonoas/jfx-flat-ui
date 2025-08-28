@@ -188,7 +188,7 @@ public class SVGImage extends Region {
                         SizeConverter.getInstance(), Region.USE_COMPUTED_SIZE) {
                     @Override
                     public boolean isSettable(SVGImage control) {
-                        return control.size == null || !control.size.isBound();
+                        return !control.size.isBound();
                     }
 
                     @Override
