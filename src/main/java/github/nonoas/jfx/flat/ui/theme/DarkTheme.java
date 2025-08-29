@@ -23,7 +23,7 @@ public final class DarkTheme implements Theme {
      */
     @Override
     public String getUserAgentStylesheet() {
-        return "/css/style-light.css";
+        return "/css/style-dark.css";
     }
 
     /**
