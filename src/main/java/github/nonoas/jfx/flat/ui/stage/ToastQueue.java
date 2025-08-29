@@ -1,4 +1,4 @@
-package github.nonoas.jfx.flat.ui.control;
+package github.nonoas.jfx.flat.ui.stage;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
@@ -12,35 +12,45 @@ import javafx.util.Duration;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * toast 消息提示
+ */
 public class ToastQueue {
 
     // 内部类：存储每条消息和时长
     private static class ToastMessage {
-        final String text;
-        final int durationMillis;
-        ToastMessage(String text, int durationMillis) {
+        private final Stage stage;
+        private final String text;
+        private final int durationMillis;
+
+        public ToastMessage(Stage stage, String text, int durationMillis) {
+            this.stage = stage;
             this.text = text;
             this.durationMillis = durationMillis;
+        }
+
+        public Stage getStage() {
+            return stage;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public int getDurationMillis() {
+            return durationMillis;
         }
     }
 
     private static final Queue<ToastMessage> messageQueue = new LinkedList<>();
     private static boolean isShowing = false;
-    private static Stage ownerStage;
-
-    /**
-     * 必须先初始化一次
-     */
-    public static void init(Stage stage) {
-        ownerStage = stage;
-    }
 
     /**
      * 显示一个 toast
      */
-    public static void show(String message, int durationMillis) {
+    public static void show(Stage stage, String message, int durationMillis) {
         Platform.runLater(() -> {
-            messageQueue.offer(new ToastMessage(message, durationMillis));
+            messageQueue.offer(new ToastMessage(stage, message, durationMillis));
             if (!isShowing) {
                 showNext();
             }
@@ -70,22 +80,21 @@ public class ToastQueue {
 
         Popup popup = new Popup();
         popup.getContent().add(root);
-        popup.show(ownerStage);
+        popup.show(toast.stage);
 
-        // 更新位置的函数
+        // 更新位置
         Runnable updatePosition = () -> {
-            popup.setX(ownerStage.getX() + ownerStage.getWidth() / 2 - root.getWidth() / 2);
-            popup.setY(ownerStage.getY() + ownerStage.getHeight() - 100);
+            popup.setX(toast.stage.getX() + toast.stage.getWidth() / 2 - root.getWidth() / 2);
+            popup.setY(toast.stage.getY() + toast.stage.getHeight() - 100);
         };
 
-        // 初始设置一次
         updatePosition.run();
 
         // 监听窗口移动/缩放
-        ownerStage.xProperty().addListener((obs, oldV, newV) -> updatePosition.run());
-        ownerStage.yProperty().addListener((obs, oldV, newV) -> updatePosition.run());
-        ownerStage.widthProperty().addListener((obs, oldV, newV) -> updatePosition.run());
-        ownerStage.heightProperty().addListener((obs, oldV, newV) -> updatePosition.run());
+        toast.stage.xProperty().addListener((obs, oldV, newV) -> updatePosition.run());
+        toast.stage.yProperty().addListener((obs, oldV, newV) -> updatePosition.run());
+        toast.stage.widthProperty().addListener((obs, oldV, newV) -> updatePosition.run());
+        toast.stage.heightProperty().addListener((obs, oldV, newV) -> updatePosition.run());
 
         // 渐入
         FadeTransition fadeIn = new FadeTransition(Duration.millis(200), root);
