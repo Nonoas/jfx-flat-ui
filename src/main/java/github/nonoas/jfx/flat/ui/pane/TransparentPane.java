@@ -71,7 +71,7 @@ public class TransparentPane extends AnchorPane {
     }
 
     private void initShadowPane() {
-        shadowPane.setStyle("-fx-background-color: white;");
+        shadowPane.getStyleClass().add("jfu-root-pane");
         shadowPane.setEffect(getDropShadow());
         shadowPane.getChildren().setAll(contentPane);
         UIUtil.setAnchor(shadowPane, 0.0);
