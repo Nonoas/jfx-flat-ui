@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
@@ -183,6 +184,13 @@ public class AppStage {
         // 设置窗口拖动
         parent.setOnMousePressed(pressHandler);
         parent.setOnMouseDragged(draggedHandler);
+        // 设置双击最大化/还原（仅左键）
+        parent.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                Stage stage = (Stage) parent.getScene().getWindow();
+                setMaximized(!stage.isMaximized());
+            }
+        });
         return this;
     }
 
@@ -196,6 +204,7 @@ public class AppStage {
         // 取消组件的窗口拖动事件
         parent.setOnMousePressed(null);
         parent.setOnMouseDragged(null);
+        parent.setOnMouseClicked(null);
         return this;
     }
 
