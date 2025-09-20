@@ -2,6 +2,7 @@ package github.nonoas.jfx.flat.ui.control;
 
 import github.nonoas.jfx.flat.ui.Colors;
 import github.nonoas.jfx.flat.ui.pane.SVGImage;
+import github.nonoas.jfx.flat.ui.theme.Styles;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
@@ -85,5 +86,16 @@ public class UIFactory {
                 .backgroundColor(Color.TRANSPARENT)
                 .backgroundColorHover(Colors.HOVER_0)
                 .build();
+    }
+
+    /**
+     * 创建基础样式的按钮
+     * @param text 按钮文本
+     * @return 基础样式的按钮
+     */
+    public static Button getAccentButton(String text) {
+        Button button = new Button(text);
+        button.setStyle(Styles.ACCENT);
+        return button;
     }
 }

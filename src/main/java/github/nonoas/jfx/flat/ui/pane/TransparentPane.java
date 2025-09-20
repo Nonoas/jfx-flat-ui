@@ -71,7 +71,7 @@ public class TransparentPane extends AnchorPane {
     }
 
     private void initShadowPane() {
-        shadowPane.getStyleClass().add("jfu-root-pane");
+        shadowPane.getStyleClass().add("jfu-shadow-pane");
         shadowPane.setEffect(getDropShadow());
         shadowPane.getChildren().setAll(contentPane);
         UIUtil.setAnchor(shadowPane, 0.0);
@@ -98,8 +98,6 @@ public class TransparentPane extends AnchorPane {
         if (content instanceof Region ) {
             Region region = (Region) content;
             UIUtil.setAnchor(region, 0);
-            region.prefWidthProperty().bind(contentPane.widthProperty());
-            region.prefHeightProperty().bind(contentPane.heightProperty());
             region.setMinSize(0, 0);
             contentPane.getChildren().setAll(region);
         } else {

@@ -237,6 +237,17 @@ public class AppStage {
         stage.setMinHeight(i);
     }
 
+    /**
+     * 设置窗口大小
+     *
+     * @param width  宽度
+     * @param height 高度
+     */
+    public void setSize(double width, double height) {
+        stage.setWidth(width);
+        stage.setHeight(height);
+    }
+
     public void setResizable(boolean b) {
         stage.setResizable(b);
     }
@@ -283,7 +294,7 @@ public class AppStage {
 
         scene.addEventFilter(MouseEvent.MOUSE_MOVED, event -> {
             // 消费此事件防止传递
-//            event.consume();
+            //            event.consume();
             // 窗口大小不可改变时，直接退出
             if (!stage.isResizable() || this.isMaximized() || stage.isFullScreen()) {
                 return;
@@ -369,7 +380,7 @@ public class AppStage {
                 stage.setY(event.getScreenY() - yOffset);
             }
 
-//            event.consume();
+            //            event.consume();
         });
 
         scene.setOnMousePressed(pressHandler);
