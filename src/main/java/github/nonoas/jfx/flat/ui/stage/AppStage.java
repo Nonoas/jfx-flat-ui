@@ -23,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.util.Collection;
 
@@ -38,7 +39,6 @@ public class AppStage {
 
     private final Scene scene;
 
-
     /**
      * 窗口最大化属性
      */
@@ -53,6 +53,8 @@ public class AppStage {
      * 根布局阴影半径
      */
     private static final double ROOT_PANE_SHADOW_RADIUS = 15.0;
+
+    private EventHandler<WindowEvent> onCloseRequest = null;
 
     public AppStage() {
         // 初始化数据
@@ -117,7 +119,6 @@ public class AppStage {
     public SimpleBooleanProperty maximizedProperty() {
         return maximized;
     }
-
 
     // 最大化前的宽度，高度
     private double preMaximizedWith = 0.0, preMaximizedHeight = 0.0;
@@ -225,7 +226,13 @@ public class AppStage {
         stage.getIcons().addAll(images);
     }
 
+    /**
+     * 关闭窗口
+     */
     public void close() {
+        if (onCloseRequest != null) {
+            onCloseRequest.handle(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
+        }
         stage.close();
     }
 
@@ -268,6 +275,9 @@ public class AppStage {
         return stage;
     }
 
+    public void setOnCloseRequest(EventHandler<WindowEvent> onCloseRequest) {
+        this.onCloseRequest = onCloseRequest;
+    }
 
     /**
      * 由于 [Stage.show] 方法不能重写，显示窗口时可能会做一些其他的操作，所以提供此方法。
@@ -373,9 +383,7 @@ public class AppStage {
             stage.setX(nextX);
             stage.setY(nextY);
 
-            if (!(isBottom || isBottomRight || isBottomLeft
-                    || isLeft || isRight
-                    || isTop || isTopLeft || isTopRight)) {
+            if (isNotResizing()) {
                 stage.setX(event.getScreenX() - xOffset);
                 stage.setY(event.getScreenY() - yOffset);
             }
@@ -384,6 +392,16 @@ public class AppStage {
         });
 
         scene.setOnMousePressed(pressHandler);
+    }
+
+    /**
+     * 判断鼠标不在窗口边缘
+     * @return  鼠标不在窗口边缘，返回true
+     */
+    private boolean isNotResizing() {
+        return !(isBottom || isBottomRight || isBottomLeft
+                || isLeft || isRight
+                || isTop || isTopLeft || isTopRight);
     }
 
     /**
