@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 public abstract class AutoReleaseApplication extends Application {
 
     public AutoReleaseApplication() {
-        // 构造器通常用于框架设置
-        System.out.println("AutoReleaseApplication 框架初始化...");
     }
 
     /**
