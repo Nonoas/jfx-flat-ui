@@ -37,8 +37,6 @@ public enum AppState {
         return stage;
     }
 
-
-
     public static void setScene(final Scene scene) {
         AppState.scene = scene;
     }
