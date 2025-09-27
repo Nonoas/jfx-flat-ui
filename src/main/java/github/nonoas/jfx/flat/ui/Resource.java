@@ -13,10 +13,14 @@ public interface Resource extends Closeable {
     /**
      * 释放资源，例如关闭数据库连接、文件流等。
      */
-    void release();
+    void release() throws Exception;
 
     @Override
     default void close() throws IOException {
-        release();
+        try {
+            release();
+        } catch (Exception e) {
+            throw new IOException(e);
+        }
     }
 }
