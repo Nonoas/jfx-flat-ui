@@ -39,6 +39,8 @@ public class TransparentPane extends AnchorPane {
 
     private final Insets ROOT_PADDING = new Insets(InsetConstant.SHADOW_SIZE_1);
 
+    private static final double CORNER_RADIUS = 10.0; // 设置圆角半径，需与CSS中的值保持一致
+
     public TransparentPane() {
         this.setPadding(ROOT_PADDING);
         setStyle("-fx-background-color: transparent !important;");
@@ -53,6 +55,8 @@ public class TransparentPane extends AnchorPane {
 
         // 给 shadowPane 添加剪裁区域，避免显示超出 padding 的内容
         Rectangle clip = new Rectangle();
+        clip.setArcWidth(CORNER_RADIUS * 2);  // ArcWidth = 2 * Radius
+        clip.setArcHeight(CORNER_RADIUS * 2); // ArcHeight = 2 * Radius
         contentPane.setClip(clip);
 
         // 根据 shadowPane 尺寸动态更新 clip 大小
@@ -71,6 +75,10 @@ public class TransparentPane extends AnchorPane {
     }
 
     private void initShadowPane() {
+        shadowPane.setStyle(
+                "-fx-background-color: white;" + // 必须设置背景色才能显示圆角和阴影
+                        "-fx-background-radius: " + CORNER_RADIUS + ";" // 设置圆角半径
+        );
         shadowPane.getStyleClass().add("jfu-shadow-pane");
         shadowPane.setEffect(getDropShadow());
         shadowPane.getChildren().setAll(contentPane);
