@@ -64,7 +64,8 @@ public class TransparentPane extends AnchorPane {
             clip.setWidth(newBounds.getWidth());
             clip.setHeight(newBounds.getHeight());
         });
-        getChildren().setAll(shadowPane, sysBtnBox);
+        contentPane.getChildren().add(sysBtnBox);
+        getChildren().setAll(shadowPane);
     }
 
     private void initSysButton(HBox sysBtnBox) {
@@ -107,9 +108,11 @@ public class TransparentPane extends AnchorPane {
             Region region = (Region) content;
             UIUtil.setAnchor(region, 0);
             region.setMinSize(0, 0);
-            contentPane.getChildren().setAll(region);
+            contentPane.getChildren().remove(0);
+            contentPane.getChildren().add(0, region);
         } else {
-            contentPane.getChildren().setAll(content);
+            contentPane.getChildren().remove(0);
+            contentPane.getChildren().add(0, content);
         }
     }
 
