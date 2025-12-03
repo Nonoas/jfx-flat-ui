@@ -64,6 +64,7 @@ public class TransparentPane extends AnchorPane {
             clip.setWidth(newBounds.getWidth());
             clip.setHeight(newBounds.getHeight());
         });
+        sysBtnBox.setViewOrder(-Double.MAX_VALUE);
         contentPane.getChildren().add(sysBtnBox);
         getChildren().setAll(shadowPane);
     }
@@ -104,15 +105,13 @@ public class TransparentPane extends AnchorPane {
      * @param content 根布局
      */
     public void setContent(Node content) {
-        if (content instanceof Region ) {
+        if (content instanceof Region) {
             Region region = (Region) content;
             UIUtil.setAnchor(region, 0);
             region.setMinSize(0, 0);
-            contentPane.getChildren().remove(0);
-            contentPane.getChildren().add(0, region);
+            contentPane.getChildren().add(region);
         } else {
-            contentPane.getChildren().remove(0);
-            contentPane.getChildren().add(0, content);
+            contentPane.getChildren().add(content);
         }
     }
 
