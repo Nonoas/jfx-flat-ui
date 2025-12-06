@@ -64,16 +64,12 @@ public class AppStage {
         // 初始化数据
         stageRootPane = new TransparentPane();
         stageRootPane.arcWidthProperty().bind(
-                new When(stage.maximizedProperty())
-                        .then(0.0)
-                        .otherwise(CORNER_RADIUS * 2)
+                new When(maximized).then(0.0).otherwise(CORNER_RADIUS * 2)
         );
 
         // arcHeight 绑定
         stageRootPane.arcHeightProperty().bind(
-                new When(stage.maximizedProperty())
-                        .then(0.0)
-                        .otherwise(CORNER_RADIUS * 2)
+                new When(maximized).then(0.0).otherwise(CORNER_RADIUS * 2)
         );
         scene = new Scene(stageRootPane);
 
