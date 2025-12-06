@@ -5,6 +5,7 @@ import github.nonoas.jfx.flat.ui.common.Visibility;
 import github.nonoas.jfx.flat.ui.control.UIFactory;
 import github.nonoas.jfx.flat.ui.pane.TransparentPane;
 import github.nonoas.jfx.flat.ui.utils.UIUtil;
+import javafx.application.Platform;
 import javafx.beans.binding.When;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
@@ -138,33 +139,36 @@ public class AppStage {
     // 最大化前的宽度，高度
     private double preMaximizedWith = 0.0, preMaximizedHeight = 0.0;
 
-    /**
-     * 最大化窗口
-     *
-     * @param isMax true：最大化
-     */
     public void setMaximized(boolean isMax) {
         maximized.set(isMax);
+
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+
         if (isMax) {
             preMaximizedWith = stage.getWidth();
             preMaximizedHeight = stage.getHeight();
 
             stageRootPane.setPadding(InsetConstant.INSET_EMPTY);
-            Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
 
-            stage.setMaximized(true);
-            stage.setWidth(visualBounds.getWidth());
-            stage.setHeight(visualBounds.getHeight());
-            stage.setX(visualBounds.getMinX());
-            stage.setY(visualBounds.getMinY());
+            // 先设置位置
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            Platform.runLater(() -> {
+                stage.setX(bounds.getMinX());
+                stage.setY(bounds.getMinY());
+            });
         } else {
             stageRootPane.setPadding(InsetConstant.INSET_16);
-            stage.setMaximized(false);
+
+            // 先恢复大小
             stage.setWidth(Math.max(preMaximizedWith, stage.getMinWidth()));
             stage.setHeight(Math.max(preMaximizedHeight, stage.getMinHeight()));
-            stage.centerOnScreen();
+
+            // 下一帧再 Center（否则也会跳）
+            Platform.runLater(stage::centerOnScreen);
         }
     }
+
 
     public ObservableList<Node> getSystemButtons() {
         return stageRootPane.getSysButtons();
