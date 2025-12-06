@@ -2,6 +2,9 @@ package github.nonoas.jfx.flat.ui.pane;
 
 import github.nonoas.jfx.flat.ui.common.InsetConstant;
 import github.nonoas.jfx.flat.ui.utils.UIUtil;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,7 +42,10 @@ public class TransparentPane extends AnchorPane {
 
     private final Insets ROOT_PADDING = new Insets(InsetConstant.SHADOW_SIZE_1);
 
-    private static final double CORNER_RADIUS = 10.0; // 设置圆角半径，需与CSS中的值保持一致
+    public static final double CORNER_RADIUS = 10.0; // 设置圆角半径，需与CSS中的值保持一致
+
+    private final DoubleProperty arcWidth = new SimpleDoubleProperty(CORNER_RADIUS * 2);
+    private final DoubleProperty arcHeight = new SimpleDoubleProperty(CORNER_RADIUS * 2);
 
     public TransparentPane() {
         this.setPadding(ROOT_PADDING);
@@ -55,8 +61,8 @@ public class TransparentPane extends AnchorPane {
 
         // 给 shadowPane 添加剪裁区域，避免显示超出 padding 的内容
         Rectangle clip = new Rectangle();
-        clip.setArcWidth(CORNER_RADIUS * 2);  // ArcWidth = 2 * Radius
-        clip.setArcHeight(CORNER_RADIUS * 2); // ArcHeight = 2 * Radius
+        clip.arcWidthProperty().bind(arcWidth);
+        clip.arcHeightProperty().bind(arcHeight);
         contentPane.setClip(clip);
 
         // 根据 shadowPane 尺寸动态更新 clip 大小
@@ -77,15 +83,22 @@ public class TransparentPane extends AnchorPane {
     }
 
     private void initShadowPane() {
-        shadowPane.setStyle(
-                "-fx-background-color: white;" + // 必须设置背景色才能显示圆角和阴影
-                        "-fx-background-radius: " + CORNER_RADIUS + ";" // 设置圆角半径
-        );
         shadowPane.getStyleClass().add("jfu-shadow-pane");
+        shadowPane.setStyle("-fx-background-color: white;");
+
         shadowPane.setEffect(getDropShadow());
         shadowPane.getChildren().setAll(contentPane);
         UIUtil.setAnchor(shadowPane, 0.0);
+
+        // 🔥 动态圆角绑定到 CSS 变量
+        shadowPane.styleProperty().bind(
+                Bindings.concat(
+                        "-fx-background-color: white;",
+                        "-fx-background-radius: ", arcWidthProperty().divide(2).asString(), ";"
+                )
+        );
     }
+
 
     private void initContentPane() {
         // 不需要 VBox.setVgrow 了，StackPane 会自动让它填满
@@ -121,5 +134,29 @@ public class TransparentPane extends AnchorPane {
         dropshadow.setSpread(0.15);
         dropshadow.setColor(Color.rgb(0, 0, 0, 0.3));
         return dropshadow;
+    }
+
+    public double getArcWidth() {
+        return arcWidth.get();
+    }
+
+    public DoubleProperty arcWidthProperty() {
+        return arcWidth;
+    }
+
+    public void setArcWidth(double arcWidth) {
+        this.arcWidth.set(arcWidth);
+    }
+
+    public double getArcHeight() {
+        return arcHeight.get();
+    }
+
+    public DoubleProperty arcHeightProperty() {
+        return arcHeight;
+    }
+
+    public void setArcHeight(double arcHeight) {
+        this.arcHeight.set(arcHeight);
     }
 }

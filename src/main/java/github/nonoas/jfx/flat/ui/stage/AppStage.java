@@ -5,6 +5,7 @@ import github.nonoas.jfx.flat.ui.common.Visibility;
 import github.nonoas.jfx.flat.ui.control.UIFactory;
 import github.nonoas.jfx.flat.ui.pane.TransparentPane;
 import github.nonoas.jfx.flat.ui.utils.UIUtil;
+import javafx.beans.binding.When;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -26,6 +27,8 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 import java.util.Collection;
+
+import static github.nonoas.jfx.flat.ui.pane.TransparentPane.CORNER_RADIUS;
 
 /**
  * App窗口，通常作为唯一窗口
@@ -59,6 +62,18 @@ public class AppStage {
     public AppStage() {
         // 初始化数据
         stageRootPane = new TransparentPane();
+        stageRootPane.arcWidthProperty().bind(
+                new When(stage.maximizedProperty())
+                        .then(0.0)
+                        .otherwise(CORNER_RADIUS * 2)
+        );
+
+        // arcHeight 绑定
+        stageRootPane.arcHeightProperty().bind(
+                new When(stage.maximizedProperty())
+                        .then(0.0)
+                        .otherwise(CORNER_RADIUS * 2)
+        );
         scene = new Scene(stageRootPane);
 
         initView();
@@ -396,7 +411,8 @@ public class AppStage {
 
     /**
      * 判断鼠标不在窗口边缘
-     * @return  鼠标不在窗口边缘，返回true
+     *
+     * @return 鼠标不在窗口边缘，返回true
      */
     private boolean isNotResizing() {
         return !(isBottom || isBottomRight || isBottomLeft
