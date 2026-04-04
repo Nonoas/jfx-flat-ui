@@ -3,3 +3,5 @@ target
 db/*.trace.db
 logs
 .local
+.codex
+.ai
