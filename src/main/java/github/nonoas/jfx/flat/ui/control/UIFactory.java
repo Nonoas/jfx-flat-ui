@@ -3,6 +3,8 @@ package github.nonoas.jfx.flat.ui.control;
 import github.nonoas.jfx.flat.ui.Colors;
 import github.nonoas.jfx.flat.ui.pane.SVGImage;
 import github.nonoas.jfx.flat.ui.theme.Styles;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
@@ -19,7 +21,7 @@ public class UIFactory {
         return getBaseButton(svgImage);
     }
 
-    public static Button createMaximizeButton(SimpleBooleanProperty maximizedProperty) {
+    public static Button createMaximizeButton(ReadOnlyBooleanProperty maximizedProperty) {
         // 非最大化时图标
         SVGImage svgImage = new SVGImage(SVGPath.MAXIMIZE_BUTTON.value(), Colors.COMMON_BTN_COLOR);
         svgImage.setSize(15, 15);

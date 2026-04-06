@@ -1,19 +1,10 @@
 package github.nonoas.jfx.flat.ui.stage;
 
-import github.nonoas.jfx.flat.ui.common.InsetConstant;
-import github.nonoas.jfx.flat.ui.common.Visibility;
 import github.nonoas.jfx.flat.ui.control.UIFactory;
-import github.nonoas.jfx.flat.ui.pane.TransparentPane;
-import github.nonoas.jfx.flat.ui.utils.UIUtil;
-import javafx.application.Platform;
-import javafx.beans.binding.When;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.BoundingBox;
-import javafx.geometry.Bounds;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Cursor;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,57 +12,35 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.HeaderBar;
+import javafx.scene.layout.HeaderButtonType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 
 import java.util.Collection;
-
-import static github.nonoas.jfx.flat.ui.pane.TransparentPane.CORNER_RADIUS;
 
 /**
  * App窗口，通常作为唯一窗口
  */
-public class AppStage {
+public class AppStage extends Stage {
 
     private double xOffset = 0;
     private double yOffset = 0;
 
-    private final Stage stage = new Stage();
+    private final BorderPane rootPane = new BorderPane();
+    private final Scene scene = new Scene(rootPane);
 
-    private final Scene scene;
+    private ObservableList<Node> sysButtons;
 
-    /**
-     * 窗口最大化属性
-     */
-    private final SimpleBooleanProperty maximized = new SimpleBooleanProperty(false);
-
-    /**
-     * 窗口根布局
-     */
-    private final TransparentPane stageRootPane;
 
     /**
      * 根布局阴影半径
      */
     private static final double ROOT_PANE_SHADOW_RADIUS = 15.0;
 
-    private EventHandler<WindowEvent> onCloseRequest = null;
-
     public AppStage() {
-        // 初始化数据
-        stageRootPane = new TransparentPane();
-        stageRootPane.arcWidthProperty().bind(
-                new When(maximized).then(0.0).otherwise(CORNER_RADIUS * 2)
-        );
-
-        // arcHeight 绑定
-        stageRootPane.arcHeightProperty().bind(
-                new When(maximized).then(0.0).otherwise(CORNER_RADIUS * 2)
-        );
-        scene = new Scene(stageRootPane);
 
         initView();
     }
@@ -80,39 +49,40 @@ public class AppStage {
      * 初始化视图
      */
     private void initView() {
-        scene.setFill(Color.TRANSPARENT);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setScene(scene);
 
-        initSysButtons();
-        initCursorListen();
-        initResizedListener();
+        HeaderBar headerBar = new HeaderBar();
+        HeaderBar.setPrefButtonHeight(this, 0);
+
+        Button minBtn = UIFactory.createMinimizeButton();
+        Button maxBtn = UIFactory.createMaximizeButton(maximizedProperty());
+        Button closeBtn = UIFactory.createCloseButton();
+
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER_RIGHT);
+        sysButtons = hBox.getChildren();
+        hBox.getChildren().addAll(minBtn, maxBtn, closeBtn);
+
+        HeaderBar.setButtonType(minBtn, HeaderButtonType.ICONIFY);
+        HeaderBar.setButtonType(maxBtn, HeaderButtonType.MAXIMIZE);
+        HeaderBar.setButtonType(closeBtn, HeaderButtonType.CLOSE);
+
+        headerBar.setTrailing(hBox);
+        HeaderBar.setAlignment(hBox, Pos.CENTER_RIGHT);
+
+        initStyle(StageStyle.EXTENDED);
+
+        rootPane.setTop(headerBar);
+
+        setScene(scene);
     }
 
     /**
-     * 初始化窗口按钮，包括监听事件
+     * 获取标题栏
+     *
+     * @return 标题栏
      */
-    private void initSysButtons() {
-        Button minBtn = UIFactory.createMinimizeButton();
-        Button maxBtn = UIFactory.createMaximizeButton(maximized);
-        Button closeBtn = UIFactory.createCloseButton();
-
-        minBtn.setOnAction(event -> this.stage.setIconified(true));
-        maxBtn.setOnAction(event -> this.setMaximized(!isMaximized()));
-
-        // 最大化按钮绑定 Stage 的 resizable 属性
-        // resizable 为 false 的时候不显示最大化按钮
-        stage.resizableProperty().addListener((observable, oldValue, resizable) -> {
-            if (resizable) {
-                UIUtil.setVisible(maxBtn, Visibility.VISIBLE);
-            } else {
-                UIUtil.setVisible(maxBtn, Visibility.GONE);
-            }
-        });
-
-        closeBtn.setOnAction(event -> this.close());
-
-        stageRootPane.getSysButtons().addAll(minBtn, maxBtn, closeBtn);
+    public HeaderBar getHeaderBar() {
+        return (HeaderBar) rootPane.getTop();
     }
 
     /**
@@ -121,53 +91,12 @@ public class AppStage {
      * @param parent 根布局
      */
     public void setContentView(Parent parent) {
-        stageRootPane.setContent(parent);
-    }
-
-    public boolean isMaximized() {
-        return maximized.get();
-    }
-
-    public SimpleBooleanProperty maximizedProperty() {
-        return maximized;
-    }
-
-    // 最大化前的宽度，高度
-    private double preMaximizedWith = 0.0, preMaximizedHeight = 0.0;
-
-    public void setMaximized(boolean isMax) {
-        maximized.set(isMax);
-
-        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-
-        if (isMax) {
-            preMaximizedWith = stage.getWidth();
-            preMaximizedHeight = stage.getHeight();
-
-            stageRootPane.setPadding(InsetConstant.INSET_EMPTY);
-
-            // 先设置位置
-            stage.setWidth(bounds.getWidth());
-            stage.setHeight(bounds.getHeight());
-            Platform.runLater(() -> {
-                stage.setX(bounds.getMinX());
-                stage.setY(bounds.getMinY());
-            });
-        } else {
-            stageRootPane.setPadding(InsetConstant.INSET_16);
-
-            // 先恢复大小
-            stage.setWidth(Math.max(preMaximizedWith, stage.getMinWidth()));
-            stage.setHeight(Math.max(preMaximizedHeight, stage.getMinHeight()));
-
-            // 下一帧再 Center（否则也会跳）
-            Platform.runLater(stage::centerOnScreen);
-        }
+        rootPane.setCenter(parent);
     }
 
 
     public ObservableList<Node> getSystemButtons() {
-        return stageRootPane.getSysButtons();
+        return sysButtons;
     }
 
     /**
@@ -183,8 +112,8 @@ public class AppStage {
      */
     private final EventHandler<MouseEvent> draggedHandler = event -> {
         if (!isMaximized()) {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
+            setX(event.getScreenX() - xOffset);
+            setY(event.getScreenY() - yOffset);
         }
     };
 
@@ -204,7 +133,7 @@ public class AppStage {
         parent.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                 Stage stage = (Stage) parent.getScene().getWindow();
-                setMaximized(!stage.isMaximized());
+                setMaximized(!isMaximized());
             }
         });
         return this;
@@ -226,37 +155,12 @@ public class AppStage {
 
 
     /**
-     * 显示窗口
-     */
-    public void show() {
-        stage.show();
-    }
-
-    /**
      * 添加图标
      *
      * @param images 图标集合
      */
     public final void addIcons(Collection<Image> images) {
-        stage.getIcons().addAll(images);
-    }
-
-    /**
-     * 关闭窗口
-     */
-    public void close() {
-        if (onCloseRequest != null) {
-            onCloseRequest.handle(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
-        }
-        stage.close();
-    }
-
-    public void setMinWidth(int i) {
-        stage.setMinWidth(i);
-    }
-
-    public void setMinHeight(int i) {
-        stage.setMinHeight(i);
+        getIcons().addAll(images);
     }
 
     /**
@@ -266,256 +170,29 @@ public class AppStage {
      * @param height 高度
      */
     public void setSize(double width, double height) {
-        stage.setWidth(width);
-        stage.setHeight(height);
-    }
-
-    public void setResizable(boolean b) {
-        stage.setResizable(b);
-    }
-
-    public final void setAlwaysOnTop(boolean b) {
-        stage.setAlwaysOnTop(b);
-    }
-
-    public final void setTitle(String title) {
-        stage.setTitle(title);
-    }
-
-    public final void hide() {
-        stage.hide();
+        setWidth(width);
+        setHeight(height);
     }
 
     public Stage getStage() {
-        return stage;
-    }
-
-    public void setOnCloseRequest(EventHandler<WindowEvent> onCloseRequest) {
-        this.onCloseRequest = onCloseRequest;
+        return this;
     }
 
     /**
-     * 由于 [Stage.show] 方法不能重写，显示窗口时可能会做一些其他的操作，所以提供此方法。
+     * 由于 [show] 方法不能重写，显示窗口时可能会做一些其他的操作，所以提供此方法。
      * 调用时，如果窗口处于最小化状态，也会显示出来
      */
     public void display() {
-        if (stage.isIconified()) {
-            stage.setIconified(false);
+        if (isIconified()) {
+            setIconified(false);
         }
-        stage.show();
+        show();
     }
 
     /**
      * 判断窗口是否在显示在屏幕上，即没有最小化且没有隐藏
      */
     public boolean isInsight() {
-        return stage.isShowing() && !stage.isIconified();
-    }
-
-    /**
-     * 设置内容可缩放
-     */
-    private void initCursorListen() {
-
-        scene.addEventFilter(MouseEvent.MOUSE_MOVED, event -> {
-            // 消费此事件防止传递
-            //            event.consume();
-            // 窗口大小不可改变时，直接退出
-            if (!stage.isResizable() || this.isMaximized() || stage.isFullScreen()) {
-                return;
-            }
-            Bounds layoutBounds = getResizeDealBounds();
-            Cursor cursor = cursorResizeType(event, layoutBounds);
-            scene.setCursor(cursor);
-        });
-
-    }
-
-
-    /**
-     * 设置窗口大小改变事件
-     */
-    private void initResizedListener() {
-
-        scene.setOnMouseDragged(event -> {
-
-            if (isMaximized()) {
-                return;
-            }
-
-            double stageMinWidth = stage.getMinWidth();
-            double stageMinHeight = stage.getMinHeight();
-
-            // 保存窗口改变后的x、y坐标和宽度、高度，用于预判是否会小于最小宽度、最小高度
-            double nextX = stage.getX();
-            double nextY = stage.getY();
-
-
-            double nextWidth = stage.getWidth();
-            double nextHeight = stage.getHeight();
-
-            double currW = nextWidth;
-            double currH = nextHeight;
-
-            double stageEndX = nextX + nextWidth;
-            double stageEndY = nextY + nextHeight;
-
-            // 所有左边调整
-            if (isLeft || isTopLeft || isBottomLeft) {
-                nextX = event.getScreenX() - ROOT_PANE_SHADOW_RADIUS;
-                nextWidth = stageEndX - nextX;
-            }
-            // 所有右边调整
-            if (isTopRight || isRight || isBottomRight) {
-                nextWidth = event.getSceneX();
-            }
-
-            // 所有上边调整
-            if (isTop || isTopLeft || isTopRight) {
-                nextY = event.getScreenY() - ROOT_PANE_SHADOW_RADIUS;
-                nextHeight = stageEndY - nextY;
-            }
-            // 所有下边调整
-            if (isBottomLeft || isBottomRight || isBottom) {
-                nextHeight = event.getSceneY();
-            }
-
-            // 如果窗口改变后的宽度小于最小宽度，则宽度调整到最小宽度
-            if (nextWidth <= stageMinWidth) {
-                nextX = stage.getX();
-                nextWidth = currW;
-            }
-
-            // 如果窗口改变后的高度小于最小高度，则高度调整到最小高度
-            if (nextHeight <= stageMinHeight) {
-                nextHeight = currH;
-                nextY = stage.getY();
-            }
-
-            // 最后统一改变窗口的x、y坐标和宽度、高度，可以防止刷新频繁出现的屏闪情况
-            stage.setWidth(nextWidth);
-            stage.setHeight(nextHeight);
-            stage.setX(nextX);
-            stage.setY(nextY);
-
-            if (isNotResizing()) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-
-            //            event.consume();
-        });
-
-        scene.setOnMousePressed(pressHandler);
-    }
-
-    /**
-     * 判断鼠标不在窗口边缘
-     *
-     * @return 鼠标不在窗口边缘，返回true
-     */
-    private boolean isNotResizing() {
-        return !(isBottom || isBottomRight || isBottomLeft
-                || isLeft || isRight
-                || isTop || isTopLeft || isTopRight);
-    }
-
-    /**
-     * 窗口拉伸触发的误差半径
-     */
-    private static final double stageResizeBoundRadius = 5.0;
-
-    private Bounds getResizeDealBounds() {
-        // 偏移范围
-        final double offsetWith = ROOT_PANE_SHADOW_RADIUS + stageResizeBoundRadius;
-
-        Bounds bounds = stageRootPane.getLayoutBounds();
-
-        double left = bounds.getMinX() + offsetWith;
-        double width = bounds.getMaxX() - bounds.getMinX() - 2 * offsetWith;
-        double top = bounds.getMinY() + offsetWith;
-        double height = bounds.getMaxY() - bounds.getMinX() - 2 * offsetWith;
-
-        return new BoundingBox(left, top, width, height);
-    }
-
-
-    //=================================================================
-    //                           窗体拉伸属性
-    //=================================================================
-
-    private boolean isRight;
-    private boolean isLeft;
-    private boolean isBottomLeft;
-    private boolean isBottomRight;
-    private boolean isBottom;
-    private boolean isTopLeft;
-    private boolean isTopRight;
-    private boolean isTop;
-
-    // 设置鼠标悬停样式
-    private Cursor cursorResizeType(MouseEvent e, Bounds bounds) {
-
-        Cursor cursorType = Cursor.DEFAULT;// 鼠标光标初始为默认类型，若未进入调整窗口状态，保持默认类型
-
-        double eX = e.getSceneX();
-        double eY = e.getSceneY();
-
-        // 先将所有调整窗口状态重置
-        isRight = isLeft = false;
-        isTop = isTopLeft = isTopRight = false;
-        isBottomRight = isBottomLeft = isBottom = false;
-
-        // 超出上边距
-        if (eY < bounds.getMinY()) {
-            // 左上
-            if (eX < bounds.getMinX()) {
-                isTopLeft = true;
-                cursorType = Cursor.NW_RESIZE;
-            }
-            // 右上
-            else if (eX > bounds.getMaxX()) {
-                isTopRight = true;
-                cursorType = Cursor.NE_RESIZE;
-            }
-            // 上
-            else {
-                isTop = true;
-                cursorType = Cursor.N_RESIZE;
-            }
-        }
-        // 超出下边距
-        else if (eY > bounds.getMaxY()) {
-            // 左下
-            if (eX < bounds.getMinX()) {
-                isBottomLeft = true;
-                cursorType = Cursor.SW_RESIZE;
-            }
-            // 右下
-            else if (eX > bounds.getMaxX()) {
-                isBottomRight = true;
-                cursorType = Cursor.SE_RESIZE;
-            }
-            // 下
-            else {
-                isBottom = true;
-                cursorType = Cursor.S_RESIZE;
-            }
-        }
-        // 左右边界
-        else {
-            // 左
-            if (eX < bounds.getMinX()) {
-                isLeft = true;
-                cursorType = Cursor.W_RESIZE;
-            }
-            // 右
-            else if (eX > bounds.getMaxX()) {
-                isRight = true;
-                cursorType = Cursor.E_RESIZE;
-            }
-        }
-
-        return cursorType;
+        return isShowing() && !isIconified();
     }
 }
