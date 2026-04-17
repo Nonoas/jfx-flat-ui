@@ -61,6 +61,7 @@ public class AppStage extends Stage {
         hBox.setAlignment(Pos.CENTER_RIGHT);
         sysButtons = hBox.getChildren();
         hBox.getChildren().addAll(minBtn, maxBtn, closeBtn);
+        hBox.getStyleClass().add("sys-btn-box");
 
         HeaderBar.setButtonType(minBtn, HeaderButtonType.ICONIFY);
         HeaderBar.setButtonType(maxBtn, HeaderButtonType.MAXIMIZE);
