@@ -4,6 +4,7 @@ package github.nonoas.jfx.flat.ui.theme;
 import static javafx.application.Application.STYLESHEET_CASPIAN;
 import static javafx.application.Application.STYLESHEET_MODENA;
 
+import java.util.List;
 import javafx.application.Application;
 
 /**
@@ -12,6 +13,34 @@ import javafx.application.Application;
  * @since 1.0.0
  */
 public interface Theme {
+
+    /**
+     * Returns the built-in light theme.
+     */
+    static Theme light() {
+        return new LightTheme();
+    }
+
+    /**
+     * Returns the built-in dark theme.
+     */
+    static Theme dark() {
+        return new DarkTheme();
+    }
+
+    /**
+     * Returns the built-in Claude-inspired theme.
+     */
+    static Theme claude() {
+        return new ClaudeTheme();
+    }
+
+    /**
+     * Returns all built-in custom themes shipped by this library.
+     */
+    static List<Theme> builtIns() {
+        return List.of(light(), dark(), claude());
+    }
 
     /**
      * Returns theme name.
