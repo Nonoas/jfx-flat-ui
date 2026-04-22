@@ -115,24 +115,29 @@
     -theme-toolbar-button-bg-hover: -color-base-2;
     -theme-toolbar-toggle-button-bg-selected: -color-base-2;
     -theme-toolbar-breadcrumb-hover-bg: -color-base-2;
+    -theme-selection-bg: -color-accent-subtle;
+    -theme-selection-bg-focused: -color-accent-muted;
+    -theme-menu-bar-bg: -color-bg-overlay;
+    -theme-menu-bar-border: -color-border-default;
+    -theme-menu-bar-button-bg-active: -color-accent-subtle;
+    -theme-menu-item-bg-focused: -color-accent-muted;
+    -theme-toolbar-bg: -color-bg-overlay;
+    -theme-toolbar-border: -color-border-default;
+    -theme-toolbar-control-bg: -color-bg-subtle;
+    -theme-form-control-accent: -color-accent-emphasis;
+    -theme-input-border-focused: -color-accent-emphasis;
+    -theme-input-focus-effect: none;
+    -theme-tab-header-bg: -color-bg-default;
+    -theme-tab-header-border: -color-border-default;
+    -theme-tab-border-selected: -color-border-default;
+    -theme-tab-hover-bg: -color-bg-subtle;
+    -theme-tab-label-fg: -color-accent-fg;
+    -theme-tab-close-button-bg: -color-accent-fg;
+    -theme-tab-close-button-bg-selected: -color-fg-default;
+    -theme-progress-bar-track: -color-bg-subtle;
+    -theme-table-header-bg: -color-bg-subtle;
 }
 
 .tooltip {
     -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 10px, 0.25, 0, 3);
-}
-
-.table-view,
-.tree-table-view {
-    -color-cell-bg-selected: -color-accent-subtle;
-    -color-cell-bg-selected-focused: -color-accent-muted;
-}
-
-.menu-bar > .container > .menu-button:hover,
-.menu-bar > .container > .menu-button:focused,
-.menu-bar > .container > .menu-button:showing {
-    -fx-background-color: -color-accent-subtle, -color-accent-subtle;
-}
-
-.menu-item:focused {
-    -fx-background-color: -color-accent-muted, -color-accent-muted;
 }

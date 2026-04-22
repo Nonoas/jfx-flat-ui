@@ -1133,7 +1133,7 @@ Text {
 }
 
 .check-box > .box {
-    -fx-background-color: -color-border-default, -color-bg-default;
+    -fx-background-color: -theme-form-control-accent, -color-bg-default;
     -fx-background-insets: 0, 1.5px;
     -fx-background-radius: 4px, 3px;
     -fx-padding: 3px 4px 3px 4px;
@@ -1173,7 +1173,7 @@ Text {
 }
 
 .check-box:selected > .box {
-    -fx-background-color: -color-accent-emphasis, -color-accent-emphasis;
+    -fx-background-color: -theme-form-control-accent, -theme-form-control-accent;
 }
 
 .check-box:selected > .box > .mark {
@@ -1703,9 +1703,9 @@ Text {
 .list-view {
     -color-cell-bg: -color-bg-default;
     -color-cell-fg: -color-fg-default;
-    -color-cell-bg-selected: -color-base-6;
+    -color-cell-bg-selected: -theme-selection-bg;
     -color-cell-fg-selected: -color-fg-default;
-    -color-cell-bg-selected-focused: -color-base-6;
+    -color-cell-bg-selected-focused: -theme-selection-bg-focused;
     -color-cell-fg-selected-focused: -color-fg-default;
     -color-cell-bg-odd: -color-bg-subtle;
     -color-cell-border: -color-border-default;
@@ -1760,9 +1760,9 @@ Text {
 .table-view {
     -color-cell-bg: -color-bg-default;
     -color-cell-fg: -color-fg-default;
-    -color-cell-bg-selected: -color-base-6;
+    -color-cell-bg-selected: -theme-selection-bg;
     -color-cell-fg-selected: -color-fg-default;
-    -color-cell-bg-selected-focused: -color-base-6;
+    -color-cell-bg-selected-focused: -theme-selection-bg-focused;
     -color-cell-fg-selected-focused: -color-fg-default;
     -color-cell-bg-odd: -color-bg-subtle;
     -color-cell-border: -color-border-default;
@@ -1770,7 +1770,7 @@ Text {
     -fx-border-color: -color-cell-border;
     -fx-border-width: 1px;
     -fx-border-radius: 0;
-    -color-header-bg: -color-bg-subtle;
+    -color-header-bg: -theme-table-header-bg;
     -color-header-fg: -color-fg-default;
 }
 
@@ -1955,9 +1955,9 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .tree-view {
     -color-cell-bg: -color-bg-default;
     -color-cell-fg: -color-fg-default;
-    -color-cell-bg-selected: -color-base-6;
+    -color-cell-bg-selected: -theme-selection-bg;
     -color-cell-fg-selected: -color-fg-default;
-    -color-cell-bg-selected-focused: -color-base-6;
+    -color-cell-bg-selected-focused: -theme-selection-bg-focused;
     -color-cell-fg-selected-focused: -color-fg-default;
     -color-cell-bg-odd: -color-bg-subtle;
     -color-cell-border: -color-border-default;
@@ -2029,9 +2029,9 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .tree-table-view {
     -color-cell-bg: -color-bg-default;
     -color-cell-fg: -color-fg-default;
-    -color-cell-bg-selected: -color-base-6;
+    -color-cell-bg-selected: -theme-selection-bg;
     -color-cell-fg-selected: -color-fg-default;
-    -color-cell-bg-selected-focused: -color-base-6;
+    -color-cell-bg-selected-focused: -theme-selection-bg-focused;
     -color-cell-fg-selected-focused: -color-fg-default;
     -color-cell-bg-odd: -color-bg-subtle;
     -color-cell-border: -color-border-default;
@@ -2039,7 +2039,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
     -fx-border-color: -color-cell-border;
     -fx-border-width: 1px;
     -fx-border-radius: 0;
-    -color-header-bg: -color-bg-subtle;
+    -color-header-bg: -theme-table-header-bg;
     -color-header-fg: -color-fg-default;
 }
 
@@ -2858,7 +2858,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .menu-bar {
-    -fx-background-color: -color-border-muted, -color-bg-subtle;
+    -fx-background-color: -theme-menu-bar-border, -theme-menu-bar-bg;
     -fx-background-insets: 0 0 0 0, 0 0 1 0;
     -fx-background-radius: 0;
     -fx-padding: 0;
@@ -2891,7 +2891,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .menu-bar > .container > .menu-button:hover, .menu-bar > .container > .menu-button:focused, .menu-bar > .container > .menu-button:showing {
-    -fx-background-color: -color-base-6, -color-base-6;
+    -fx-background-color: -theme-menu-bar-button-bg-active, -theme-menu-bar-button-bg-active;
 }
 
 .menu {
@@ -2942,7 +2942,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .menu-item:focused {
-    -fx-background-color: -color-base-7, -color-base-7;
+    -fx-background-color: -theme-menu-item-bg-focused, -theme-menu-item-bg-focused;
 }
 
 .menu-item:focused > .label {
@@ -3835,7 +3835,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .progress-bar {
-    -color-progress-bar-track: -color-bg-subtle;
+    -color-progress-bar-track: -theme-progress-bar-track;
     -color-progress-bar-fill: -color-accent-emphasis;
     -fx-indeterminate-bar-length: 60;
     -fx-indeterminate-bar-escape: true;
@@ -4005,7 +4005,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .radio-button > .radio {
-    -fx-background-color: -color-border-default, -color-bg-default;
+    -fx-background-color: -theme-form-control-accent, -color-bg-default;
     -fx-background-insets: 0, 1.5px;
     -fx-background-radius: 1em;
     -fx-padding: 3px;
@@ -4035,11 +4035,11 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .radio-button:selected > .radio {
-    -fx-background-color: -color-accent-emphasis, -color-accent-emphasis;
+    -fx-background-color: -theme-form-control-accent, -theme-form-control-accent;
 }
 
 .radio-button:selected > .radio > .dot {
-    -fx-background-color: -color-accent-emphasis, -color-fg-emphasis;
+    -fx-background-color: -theme-form-control-accent, -color-fg-emphasis;
     -fx-background-insets: 0, 1px;
 }
 
@@ -4512,18 +4512,18 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .tab-pane {
     -color-tab-bg-selected: -color-bg-default;
     -color-tab-fg-selected: -color-fg-default;
-    -color-tab-border-selected: -color-accent-emphasis;
+    -color-tab-border-selected: -theme-tab-border-selected;
 }
 
 .tab-pane > .tab-header-area {
     -fx-background-insets: 0;
-    -fx-background-color: -color-bg-default;
+    -fx-background-color: -theme-tab-header-bg;
     -fx-alignment: CENTER;
 }
 
 .tab-pane > .tab-header-area > .tab-header-background {
     -fx-background-insets: 0 0 0 0, 0 0 2px 0;
-    -fx-background-color: -color-border-default, -color-bg-default;
+    -fx-background-color: -theme-tab-header-border, -theme-tab-header-bg;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab {
@@ -4534,17 +4534,17 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
     -fx-alignment: CENTER;
-    -fx-text-fill: -color-fg-default;
+    -fx-text-fill: -theme-tab-label-fg;
     -fx-padding: 0.4em 0.4em 0.4em 0.4em;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label > * {
-    -fx-fill: -color-fg-default;
-    -fx-icon-color: -color-fg-default;
+    -fx-fill: -theme-tab-label-fg;
+    -fx-icon-color: -theme-tab-label-fg;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button {
-    -fx-background-color: -color-fg-default;
+    -fx-background-color: -theme-tab-close-button-bg;
     -fx-shape: "M 0,0 H1 L 4,3 7,0 H8 V1 L 5,4 8,7 V8 H7 L 4,5 1,8 H0 V7 L 3,4 0,1 Z";
     -fx-scale-shape: false;
 }
@@ -4556,7 +4556,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:hover {
-    -fx-background-color: -color-border-default, -color-bg-subtle;
+    -fx-background-color: -theme-tab-header-border, -theme-tab-hover-bg;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:top:selected, .tab-pane > .tab-header-area > .headers-region > .tab:bottom:selected {
@@ -4574,7 +4574,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:top:selected > .tab-container > .tab-close-button, .tab-pane > .tab-header-area > .headers-region > .tab:bottom:selected > .tab-container > .tab-close-button {
-    -fx-background-color: -color-tab-fg-selected;
+    -fx-background-color: -theme-tab-close-button-bg-selected;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:disabled {
@@ -4590,7 +4590,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:left:hover, .tab-pane > .tab-header-area > .headers-region > .tab:right:hover {
-    -fx-background-color: -color-border-default, -color-bg-subtle;
+    -fx-background-color: -theme-tab-header-border, -theme-tab-hover-bg;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:left:hover > .tab-container > .tab-label, .tab-pane > .tab-header-area > .headers-region > .tab:right:hover > .tab-container > .tab-label {
@@ -4598,7 +4598,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:left:hover > .tab-container > .tab-close-button, .tab-pane > .tab-header-area > .headers-region > .tab:right:hover > .tab-container > .tab-close-button {
-    -fx-background-color: -color-fg-default;
+    -fx-background-color: -theme-tab-close-button-bg;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:left:selected, .tab-pane > .tab-header-area > .headers-region > .tab:right:selected {
@@ -4616,7 +4616,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:left:selected > .tab-container > .tab-close-button, .tab-pane > .tab-header-area > .headers-region > .tab:right:selected > .tab-container > .tab-close-button {
-    -fx-background-color: -color-tab-fg-selected;
+    -fx-background-color: -theme-tab-close-button-bg-selected;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:left:disabled, .tab-pane > .tab-header-area > .headers-region > .tab:right:disabled {
@@ -4760,7 +4760,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
     -color-input-fg: -color-fg-default;
     -color-input-border: -color-border-default;
     -color-input-bg-focused: -color-bg-default;
-    -color-input-border-focused: -color-accent-emphasis;
+    -color-input-border-focused: -theme-input-border-focused;
     -color-input-bg-readonly: -color-bg-subtle;
     -color-input-bg-highlight: -color-accent-subtle;
     -color-input-fg-highlight: -color-fg-default;
@@ -4773,11 +4773,13 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
     -fx-prompt-text-fill: -color-fg-subtle;
     -fx-padding: 8px 12px 8px 12px;
     -fx-cursor: text;
+    -fx-effect: none;
 }
 
 .text-input:focused {
     -fx-background-color: -color-input-border-focused, -color-input-bg-focused;
     -fx-prompt-text-fill: transparent;
+    -fx-effect: -theme-input-focus-effect;
 }
 
 .text-input:disabled {
@@ -5186,7 +5188,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .tool-bar {
-    -fx-background-color: -color-border-muted, -color-bg-subtle;
+    -fx-background-color: -theme-toolbar-border, -theme-toolbar-bg;
     -fx-background-insets: 0, 0 0 1px 0;
     -fx-padding: 4px 0.3em 4px 0.3em;
     -fx-spacing: 4px;
@@ -5196,7 +5198,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .tool-bar > .container > .button,
 .tool-bar > .container > .menu-button,
 .tool-bar > .container > .split-menu-button {
-    -color-button-bg: -color-bg-subtle;
+    -color-button-bg: -theme-toolbar-control-bg;
     -color-button-bg-hover: -theme-toolbar-button-bg-hover;
     -color-button-border-hover: -color-accent-muted;
     -color-button-border-focused: -color-accent-muted;
@@ -5217,7 +5219,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .tool-bar > .container .toggle-button {
-    -color-button-bg: -color-bg-subtle;
+    -color-button-bg: -theme-toolbar-control-bg;
     -color-button-border-hover: -color-accent-muted;
     -color-button-bg-selected: -theme-toolbar-toggle-button-bg-selected;
     -color-button-fg-selected: -color-fg-default;

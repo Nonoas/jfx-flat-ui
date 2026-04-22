@@ -115,6 +115,27 @@
     -theme-toolbar-button-bg-hover: __REQUIRED__;
     -theme-toolbar-toggle-button-bg-selected: __REQUIRED__;
     -theme-toolbar-breadcrumb-hover-bg: __REQUIRED__;
+    -theme-selection-bg: __REQUIRED__;
+    -theme-selection-bg-focused: __REQUIRED__;
+    -theme-menu-bar-bg: __REQUIRED__;
+    -theme-menu-bar-border: __REQUIRED__;
+    -theme-menu-bar-button-bg-active: __REQUIRED__;
+    -theme-menu-item-bg-focused: __REQUIRED__;
+    -theme-toolbar-bg: __REQUIRED__;
+    -theme-toolbar-border: __REQUIRED__;
+    -theme-toolbar-control-bg: __REQUIRED__;
+    -theme-form-control-accent: __REQUIRED__;
+    -theme-input-border-focused: __REQUIRED__;
+    -theme-input-focus-effect: __REQUIRED__;
+    -theme-tab-header-bg: __REQUIRED__;
+    -theme-tab-header-border: __REQUIRED__;
+    -theme-tab-border-selected: __REQUIRED__;
+    -theme-tab-hover-bg: __REQUIRED__;
+    -theme-tab-label-fg: __REQUIRED__;
+    -theme-tab-close-button-bg: __REQUIRED__;
+    -theme-tab-close-button-bg-selected: __REQUIRED__;
+    -theme-progress-bar-track: __REQUIRED__;
+    -theme-table-header-bg: __REQUIRED__;
 }
 
 .tooltip {
