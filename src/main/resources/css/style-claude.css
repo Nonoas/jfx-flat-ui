@@ -120,3 +120,19 @@
 .tooltip {
     -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 10px, 0.25, 0, 3);
 }
+
+.table-view,
+.tree-table-view {
+    -color-cell-bg-selected: -color-accent-subtle;
+    -color-cell-bg-selected-focused: -color-accent-muted;
+}
+
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: -color-accent-subtle, -color-accent-subtle;
+}
+
+.menu-item:focused {
+    -fx-background-color: -color-accent-muted, -color-accent-muted;
+}
