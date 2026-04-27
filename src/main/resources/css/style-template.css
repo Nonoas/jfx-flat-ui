@@ -1,3 +1,7 @@
+.root{
+    -fx-background-color: -color-bg-default;
+}
+
 .root.popup {
     -fx-background-color: transparent;
 }

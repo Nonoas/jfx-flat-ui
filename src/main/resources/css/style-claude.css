@@ -1,122 +1,164 @@
 @import "style-template.css";
 
+/*
+ * Claude.ai 配色主题
+ *
+ * 底色：暖象牙 / 沙米色系  — 比原版更偏灰、更沉稳，不带黄纸感
+ * 强调：哑光赭橙           — Claude 发送按钮 / 高亮色，比原版橙红更内敛
+ * 文字：极深暖黑           — 带一丝棕调的近黑，非纯冷黑
+ */
+
 .root {
-    -color-dark: #2b211a;
-    -color-light: #fffdf9;
-    -color-base-0: #fcf8f2;
-    -color-base-1: #f3ece1;
-    -color-base-2: #e7dccd;
-    -color-base-3: #d5c4b0;
-    -color-base-4: #bba58d;
-    -color-base-5: #997f67;
-    -color-base-6: #7a624d;
-    -color-base-7: #614c3c;
-    -color-base-8: #46362b;
-    -color-base-9: #2f241c;
-    -color-accent-0: #fde9df;
-    -color-accent-1: #f8d2bf;
-    -color-accent-2: #f1b190;
-    -color-accent-3: #ea9164;
-    -color-accent-4: #dd7346;
-    -color-accent-5: #c85c34;
-    -color-accent-6: #a84829;
-    -color-accent-7: #81371f;
-    -color-accent-8: #5e2716;
-    -color-accent-9: #3f190f;
-    -color-success-0: #ebf5e8;
-    -color-success-1: #d6ead1;
-    -color-success-2: #b4d6aa;
-    -color-success-3: #8fc082;
-    -color-success-4: #6ba85c;
-    -color-success-5: #4f8944;
-    -color-success-6: #3d6b35;
-    -color-success-7: #2d4f28;
-    -color-success-8: #1f351b;
-    -color-success-9: #142313;
-    -color-warning-0: #fff4db;
-    -color-warning-1: #fce4b2;
-    -color-warning-2: #f3cc7a;
-    -color-warning-3: #e7b151;
-    -color-warning-4: #d4942f;
-    -color-warning-5: #b77617;
-    -color-warning-6: #925c11;
-    -color-warning-7: #6e430d;
-    -color-warning-8: #4b2d09;
-    -color-warning-9: #311c06;
-    -color-danger-0: #fdebe7;
-    -color-danger-1: #f7d0c5;
-    -color-danger-2: #efad9b;
-    -color-danger-3: #e48972;
-    -color-danger-4: #d7654c;
-    -color-danger-5: #ba4b38;
-    -color-danger-6: #97392d;
-    -color-danger-7: #742a22;
-    -color-danger-8: #531b16;
-    -color-danger-9: #36100d;
-    -color-fg-default: #2f241c;
-    -color-fg-muted: #6d5a4b;
-    -color-fg-subtle: #8d7867;
-    -color-fg-emphasis: #fffdf9;
-    -color-bg-default: #f7f2ea;
-    -color-bg-overlay: #fffaf3;
-    -color-bg-subtle: #efe6d9;
-    -color-bg-inset: #e7dccd;
-    -color-border-default: #d9cab7;
-    -color-border-muted: #e4d8cc;
-    -color-border-subtle: rgb(229, 219, 206);
-    -color-shadow-default: #ccb8a6;
-    -color-neutral-emphasis-plus: #46362b;
-    -color-neutral-emphasis: #7a624d;
-    -color-neutral-muted: rgba(122, 98, 77, 0.18);
-    -color-neutral-subtle: rgba(231, 220, 205, 0.58);
-    -color-accent-fg: #a84829;
-    -color-accent-emphasis: #c85c34;
-    -color-accent-muted: rgba(221, 115, 70, 0.35);
-    -color-accent-subtle: #fde9df;
-    -color-warning-fg: #925c11;
-    -color-warning-emphasis: #b77617;
-    -color-warning-muted: rgba(231, 177, 81, 0.34);
-    -color-warning-subtle: #fff4db;
-    -color-success-fg: #3d6b35;
-    -color-success-emphasis: #4f8944;
-    -color-success-muted: rgba(107, 168, 92, 0.32);
-    -color-success-subtle: #ebf5e8;
-    -color-danger-fg: #97392d;
-    -color-danger-emphasis: #ba4b38;
-    -color-danger-muted: rgba(215, 101, 76, 0.32);
-    -color-danger-subtle: #fdebe7;
-    -color-chart-1: #dd7346;
-    -color-chart-2: #d4a13a;
-    -color-chart-3: #74a66a;
-    -color-chart-4: #5c9aa0;
-    -color-chart-5: #6d7fd1;
-    -color-chart-6: #9b6ac7;
-    -color-chart-7: #c05f78;
-    -color-chart-8: #8b8178;
-    -color-chart-1-alpha70: rgba(221, 115, 70, 0.7);
-    -color-chart-2-alpha70: rgba(212, 161, 58, 0.7);
-    -color-chart-3-alpha70: rgba(116, 166, 106, 0.7);
-    -color-chart-4-alpha70: rgba(92, 154, 160, 0.7);
-    -color-chart-5-alpha70: rgba(109, 127, 209, 0.7);
-    -color-chart-6-alpha70: rgba(155, 106, 199, 0.7);
-    -color-chart-7-alpha70: rgba(192, 95, 120, 0.7);
-    -color-chart-8-alpha70: rgba(139, 129, 120, 0.7);
-    -color-chart-1-alpha20: rgba(221, 115, 70, 0.2);
-    -color-chart-2-alpha20: rgba(212, 161, 58, 0.2);
-    -color-chart-3-alpha20: rgba(116, 166, 106, 0.2);
-    -color-chart-4-alpha20: rgba(92, 154, 160, 0.2);
-    -color-chart-5-alpha20: rgba(109, 127, 209, 0.2);
-    -color-chart-6-alpha20: rgba(155, 106, 199, 0.2);
-    -color-chart-7-alpha20: rgba(192, 95, 120, 0.2);
-    -color-chart-8-alpha20: rgba(139, 129, 120, 0.2);
+    /* ── 极色 ── */
+    -color-dark: #1c1917;
+    -color-light: #faf8f5;
+
+    /* ── 底色：暖象牙 → 深沙棕，Claude 侧边栏/面板色系 ── */
+    -color-base-0: #faf8f5;
+    -color-base-1: #f2ede6;
+    -color-base-2: #e5ded4;
+    -color-base-3: #d2c8bb;
+    -color-base-4: #b5a898;
+    -color-base-5: #91806e;
+    -color-base-6: #70604f;
+    -color-base-7: #574a3c;
+    -color-base-8: #3d342a;
+    -color-base-9: #27211a;
+
+    /* ── 强调色：哑光赭橙（Claude 品牌色）── */
+    -color-accent-0: #faeee6;
+    -color-accent-1: #f3d5c0;
+    -color-accent-2: #e8b08a;
+    -color-accent-3: #db8f5e;
+    -color-accent-4: #cc7040;
+    -color-accent-5: #b85c2e;
+    -color-accent-6: #272727;
+    -color-accent-7: #733519;
+    -color-accent-8: #522411;
+    -color-accent-9: #34160a;
+
+    /* ── 成功色 ── */
+    -color-success-0: #eaf5e6;
+    -color-success-1: #d3eacb;
+    -color-success-2: #aed3a2;
+    -color-success-3: #86ba78;
+    -color-success-4: #60a052;
+    -color-success-5: #46813b;
+    -color-success-6: #34642c;
+    -color-success-7: #254a20;
+    -color-success-8: #183215;
+    -color-success-9: #0e200d;
+
+    /* ── 警告色 ── */
+    -color-warning-0: #fef6e4;
+    -color-warning-1: #fce5b4;
+    -color-warning-2: #f4cc7a;
+    -color-warning-3: #e9b24c;
+    -color-warning-4: #d49328;
+    -color-warning-5: #b37614;
+    -color-warning-6: #8e5d0e;
+    -color-warning-7: #6a450a;
+    -color-warning-8: #472e07;
+    -color-warning-9: #2d1d04;
+
+    /* ── 危险色：冷红，与赭橙主色区分 ── */
+    -color-danger-0: #fef0ed;
+    -color-danger-1: #fad4cc;
+    -color-danger-2: #f3aca0;
+    -color-danger-3: #e87f72;
+    -color-danger-4: #d85749;
+    -color-danger-5: #bb3d33;
+    -color-danger-6: #962d28;
+    -color-danger-7: #70201e;
+    -color-danger-8: #4e1514;
+    -color-danger-9: #300d0b;
+
+    /* ── 语义前景 ── */
+    -color-fg-default: #1c1917;
+    -color-fg-muted: #5c4f43;
+    -color-fg-subtle: #7a6b5e;
+    -color-fg-emphasis: #fcfcfc;
+
+    /* ── 语义背景（对应 Claude.ai 各层级）── */
+    /* bg-default  ≈ 聊天主区域底色  */
+    /* bg-overlay  ≈ 弹窗 / 浮层白底  */
+    /* bg-subtle   ≈ 侧边栏 / 工具栏  */
+    /* bg-inset    ≈ 输入框 / 嵌入区  */
+    -color-bg-default: #f8f8f6;
+    -color-bg-overlay: #ffffff;
+    -color-bg-subtle: #ede8df;
+    -color-bg-inset: #e3dbd0;
+
+    /* ── 边框 ── */
+    -color-border-default: #d8cfc3;
+    -color-border-muted: #e2dace;
+    -color-border-subtle: rgba(180, 162, 140, 0.30);
+
+    /* ── 阴影 ── */
+    -color-shadow-default: #c4b8aa;
+
+    /* ── 中性强调 ── */
+    -color-neutral-emphasis-plus: #3d342a;
+    -color-neutral-emphasis: #70604f;
+    -color-neutral-muted: rgba(112, 96, 79, 0.18);
+    -color-neutral-subtle: rgba(229, 222, 212, 0.55);
+
+    /* ── 语义强调色（直接用于控件）── */
+    -color-accent-fg: #974822;
+    -color-accent-emphasis: #121212;
+    -color-accent-muted: rgba(204, 112, 64, 0.28);
+    -color-accent-subtle: #faeee6;
+
+    -color-warning-fg: #8e5d0e;
+    -color-warning-emphasis: #b37614;
+    -color-warning-muted: rgba(233, 178, 76, 0.30);
+    -color-warning-subtle: #fef6e4;
+
+    -color-success-fg: #34642c;
+    -color-success-emphasis: #46813b;
+    -color-success-muted: rgba(96, 160, 82, 0.28);
+    -color-success-subtle: #eaf5e6;
+
+    -color-danger-fg: #962d28;
+    -color-danger-emphasis: #bb3d33;
+    -color-danger-muted: rgba(216, 87, 73, 0.28);
+    -color-danger-subtle: #fef0ed;
+
+    /* ── 图表色（chart-1 对齐 Claude 赭橙主色）── */
+    -color-chart-1: #cc7040;
+    -color-chart-2: #c9982a;
+    -color-chart-3: #60a052;
+    -color-chart-4: #469aa2;
+    -color-chart-5: #5d72cc;
+    -color-chart-6: #9060c2;
+    -color-chart-7: #b85570;
+    -color-chart-8: #857b72;
+    -color-chart-1-alpha70: rgba(204, 112, 64, 0.7);
+    -color-chart-2-alpha70: rgba(201, 152, 42, 0.7);
+    -color-chart-3-alpha70: rgba(96, 160, 82, 0.7);
+    -color-chart-4-alpha70: rgba(70, 154, 162, 0.7);
+    -color-chart-5-alpha70: rgba(93, 114, 204, 0.7);
+    -color-chart-6-alpha70: rgba(144, 96, 194, 0.7);
+    -color-chart-7-alpha70: rgba(184, 85, 112, 0.7);
+    -color-chart-8-alpha70: rgba(133, 123, 114, 0.7);
+    -color-chart-1-alpha20: rgba(204, 112, 64, 0.2);
+    -color-chart-2-alpha20: rgba(201, 152, 42, 0.2);
+    -color-chart-3-alpha20: rgba(96, 160, 82, 0.2);
+    -color-chart-4-alpha20: rgba(70, 154, 162, 0.2);
+    -color-chart-5-alpha20: rgba(93, 114, 204, 0.2);
+    -color-chart-6-alpha20: rgba(144, 96, 194, 0.2);
+    -color-chart-7-alpha20: rgba(184, 85, 112, 0.2);
+    -color-chart-8-alpha20: rgba(133, 123, 114, 0.2);
+
+    /* ── 主题级别覆盖（结构与原版一致）── */
     -theme-shadow-pane-bg: -color-bg-overlay;
     -theme-button-bg-hover: -color-base-1;
     -theme-button-success-bg-focused: -color-success-5;
     -theme-toolbar-button-bg-hover: -color-base-2;
     -theme-toolbar-toggle-button-bg-selected: -color-base-2;
     -theme-toolbar-breadcrumb-hover-bg: -color-base-2;
-    -theme-selection-bg: -color-accent-subtle;
-    -theme-selection-bg-focused: -color-accent-muted;
+    -theme-selection-bg: #e6e5e0;
+    -theme-selection-bg-focused: #e6e5e0;
     -theme-menu-bar-bg: -color-bg-overlay;
     -theme-menu-bar-border: -color-border-default;
     -theme-menu-bar-button-bg-active: -color-accent-subtle;
@@ -139,5 +181,5 @@
 }
 
 .tooltip {
-    -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 10px, 0.25, 0, 3);
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 10px, 0.22, 0, 2);
 }

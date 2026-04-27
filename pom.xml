@@ -84,7 +84,7 @@
 
     <scm>
         <connection>scm:git:git://github.com/Nonoas/jfx-flat-ui.git</connection>
-        <developerConnection>scm:git:ssh://github.com:Nonoas/jfx-flat-ui.git</developerConnection>
+        <developerConnection>scm:git:ssh://github.com:Naonoas/jfx-flat-ui.git</developerConnection>
         <url>https://github.com/Nonoas/jfx-flat-ui</url>
     </scm>
 
