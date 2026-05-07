@@ -1,10 +1,13 @@
+/* SPDX-License-Identifier: MIT */
 
 package github.nonoas.jfx.flat.ui.theme;
 
+/**
+ * A theme inspired by Claude Docs' soft neutral interface palette.
+ */
+public final class Claude implements Theme {
 
-public final class ClaudeTheme implements Theme {
-
-    public ClaudeTheme() {
+    public Claude() {
         // Default constructor
     }
 
@@ -21,7 +24,15 @@ public final class ClaudeTheme implements Theme {
      */
     @Override
     public String getUserAgentStylesheet() {
-        return "/css/style-claude.css";
+        return "/css/theme/claude.css";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheetBSS() {
+        return "/css/theme/claude.bss";
     }
 
     /**

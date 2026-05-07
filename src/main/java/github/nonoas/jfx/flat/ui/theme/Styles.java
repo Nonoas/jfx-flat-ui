@@ -1,12 +1,15 @@
+/* SPDX-License-Identifier: MIT */
+
 package github.nonoas.jfx.flat.ui.theme;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
-import java.util.Base64;
-import java.util.Objects;
 import javafx.css.PseudoClass;
 import javafx.scene.Node;
 import javafx.scene.control.TabPane;
+
+import java.util.Base64;
+import java.util.Objects;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * A set of constants and utility methods that simplifies adding CSS
@@ -58,6 +61,7 @@ public final class Styles {
     public static final String ROUNDED = "rounded";
     public static final String STRIPED = "striped";
 
+    public static final String TABS_BORDER_TOP = "border-top";
     public static final String TABS_CLASSIC = "classic";
     public static final String TABS_FLOATING = TabPane.STYLE_CLASS_FLOATING;
 

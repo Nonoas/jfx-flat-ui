@@ -1,12 +1,13 @@
+/* SPDX-License-Identifier: MIT */
 
 package github.nonoas.jfx.flat.ui.theme;
 
 /**
  * A theme based on <a href="https://primer.style/">Github Primer</a> color palette.
  */
-public final class DarkTheme implements Theme {
+public final class PrimerLight implements Theme {
 
-    public DarkTheme() {
+    public PrimerLight() {
         // Default constructor
     }
 
@@ -15,7 +16,7 @@ public final class DarkTheme implements Theme {
      */
     @Override
     public String getName() {
-        return "Dark";
+        return "Primer Light";
     }
 
     /**
@@ -23,7 +24,15 @@ public final class DarkTheme implements Theme {
      */
     @Override
     public String getUserAgentStylesheet() {
-        return "/css/style-dark.css";
+        return "/css/theme/primer-light.css";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheetBSS() {
+        return "/css/theme/primer-light.bss";
     }
 
     /**
@@ -31,6 +40,6 @@ public final class DarkTheme implements Theme {
      */
     @Override
     public boolean isDarkMode() {
-        return true;
+        return false;
     }
 }
