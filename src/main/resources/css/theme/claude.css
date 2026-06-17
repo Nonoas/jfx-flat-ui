@@ -2,7 +2,7 @@
   -color-dark: #1e1b17;
   -color-light: #fcfaf6;
   -color-base-0: #fffdf9;
-  -color-base-1: #f6f1e8;
+  -color-base-1: #E8E6DC;
   -color-base-2: #ede5d9;
   -color-base-3: #e2d7c8;
   -color-base-4: #cfc0ad;
@@ -55,7 +55,7 @@
   -color-fg-muted: #6c665d;
   -color-fg-subtle: #938a7c;
   -color-fg-emphasis: #fcfaf6;
-  -color-bg-default: #f6f3ec;
+  -color-bg-default: #F9F8F4;
   -color-bg-overlay: #fcfaf6;
   -color-bg-subtle: #f6f1e8;
   -color-bg-inset: #ece5db;
@@ -427,7 +427,6 @@ Text {
   -fx-graphic-text-gap: 6px;
   -fx-text-fill: -color-button-fg;
   -fx-alignment: CENTER;
-  -fx-effect: dropshadow(gaussian, -color-button-shadow, 3px, -2, 0, 1);
   -fx-padding: 8px 14px 8px 14px;
 }
 .button .font-icon, .button .ikonli-font-icon {
