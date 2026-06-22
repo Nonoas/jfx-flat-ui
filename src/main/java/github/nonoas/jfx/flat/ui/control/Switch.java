@@ -33,7 +33,7 @@ import javafx.scene.control.ToggleGroup;
  */
 public class Switch extends Labeled implements Toggle {
 
-    protected static final String DEFAULT_STYLE_CLASS = "switch";
+    protected static final String DEFAULT_STYLE_CLASS = "toggle-switch";
     protected static final PseudoClass PSEUDO_CLASS_SELECTED = PseudoClass.getPseudoClass("selected");
     protected static final PseudoClass PSEUDO_CLASS_RIGHT = PseudoClass.getPseudoClass("right");
 
